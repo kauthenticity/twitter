@@ -14,6 +14,7 @@ const TrendsForYou = () => {
           return <TrendsForYouItem trend={item} />
         }}
         renderSectionHeader={({section: {title}}) => <TitleText>{title}</TitleText>}
+        scrollEnabled={false}
       />
     </Container>
   )

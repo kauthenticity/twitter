@@ -14,6 +14,7 @@ const WhatsHappening = () => {
           return <WhatsHappeningItem happening={item} />
         }}
         renderSectionHeader={({section: {title}}) => <TitleText>{title}</TitleText>}
+        scrollEnabled={false}
       />
     </Container>
   )

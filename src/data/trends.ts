@@ -7,7 +7,7 @@ const trends: ITrends[] = [
   },
   {
     location: 'South Korean',
-    keyword: 'BL세계관',
+    keyword: '아름다워',
     tweets: 7848,
   },
   {
@@ -17,7 +17,7 @@ const trends: ITrends[] = [
   },
   {
     location: 'South Korean',
-    keyword: '많은 19금',
+    keyword: '내일 뭐해',
   },
   {
     location: 'South Korean',
