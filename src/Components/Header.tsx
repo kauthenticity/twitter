@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    height: 100,
+    height: 90,
     paddingTop: Platform.OS == 'ios' ? 40 : 0, // only for IOS to give StatusBar Space
     paddingHorizontal: 15,
   },

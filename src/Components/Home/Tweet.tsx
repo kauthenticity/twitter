@@ -1,11 +1,11 @@
-import React, {useMemo} from 'react'
+import React, {useEffect, useState} from 'react'
 import styled from 'styled-components/native'
 import {TouchableOpacity, View, Image, Text, StyleSheet, useWindowDimensions} from 'react-native'
-import AutoHeightImage from 'react-native-auto-height-image'
 import moment from 'moment-with-locales-es6'
 import HomeIcon from './HomeIcon'
+import ViewMore from '../Icons/ViewMore'
+
 import * as D from '../../data'
-import ViewMore from '../../Assets/Icons/view_more.svg'
 
 type TweetProps = {
   person: D.IPerson
@@ -31,10 +31,8 @@ moment.locale('en', {
 })
 
 const Tweet = ({person}: TweetProps) => {
-  const {width} = useWindowDimensions()
-  const ImgWidth = useMemo(() => {
-    return (3 * width) / 4
-  }, [width])
+  const [width, setWidth] = useState<number>(0)
+  const [height, setHeight] = useState<number>(0)
 
   return (
     <Container>
@@ -50,7 +48,7 @@ const Tweet = ({person}: TweetProps) => {
             <Created>{moment(person.createdDate).startOf('day').fromNow(true)}</Created>
           </View>
           <TouchableOpacity>
-            <ViewMore fill="#acacac" width={18} height={18} />
+            <ViewMore />
           </TouchableOpacity>
         </InfoContainer>
 
@@ -58,7 +56,7 @@ const Tweet = ({person}: TweetProps) => {
           <Description numberOfLines={3} ellipsizeMode="tail">
             {person.comments}
           </Description>
-          <AutoHeightImage style={[styles.imgStyle]} width={ImgWidth} source={{uri: person.image}} />
+          <Image style={[styles.imgStyle]} source={{uri: person.image}} />
         </ContentContainer>
         <HomeIcon counts={person.counts} />
       </RightContainer>
@@ -72,6 +70,8 @@ const styles = StyleSheet.create({
   imgStyle: {
     borderRadius: 8,
     marginVertical: 10,
+    width: '100%',
+    height: 200,
   },
 })
 
@@ -110,6 +110,7 @@ const Container = styled.View`
   padding-left: 15px;
   padding-right: 15px;
   margin: 15px 0px;
+  height: auto;
 `
 
 const LeftContainer = styled.View`

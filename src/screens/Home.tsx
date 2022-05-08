@@ -2,6 +2,7 @@ import React from 'react'
 import {StyleSheet, View, FlatList, Text} from 'react-native'
 import styled from 'styled-components/native'
 import Tweet from '../Components/Home/Tweet'
+import Separator from '../Components/Home/Separator'
 import * as D from '../data'
 
 const people: D.IPerson[] = D.makeArray(10).map(D.createRandomPerson)

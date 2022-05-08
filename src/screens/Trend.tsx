@@ -1,16 +1,68 @@
-import React from 'react';
-import {StyleSheet, View, Text} from 'react-native';
-import {Colors} from 'react-native-paper';
+import React from 'react'
+import {StyleSheet, View, Text, ImageBackground, ScrollView} from 'react-native'
+import styled from 'styled-components/native'
+import TrendsForYou from '../Components/Trends/TrendsForYou'
+import WhatsHappening from '../Components/Trends/WhatsHappening'
+import WhoToFollow from '../Components/Trends/WhoToFollow'
 
-const title = 'Happening';
 export default function Happening() {
   return (
-    <View style={[styles.view]}>
-      <Text style={[styles.text]}>{title}</Text>
+    <View style={[styles.container]}>
+      <ScrollView>
+        <ImageBackground source={require('../Assets/Images/trend.jpeg')} resizeMode="cover" style={styles.bgImg}>
+          <View style={[styles.topTextContainer]}>
+            <TopNormalContainer>
+              <TopNormal>War in Ukraine</TopNormal>
+              <Dot>·</Dot>
+              <Live>LIVE</Live>
+            </TopNormalContainer>
+            <TopBold>Evacuation efforts continue in Mariupol as Ukraine accuses Russia of violating ceasefire</TopBold>
+          </View>
+        </ImageBackground>
+        <TrendsForYou />
+        <WhatsHappening />
+        <WhoToFollow />
+      </ScrollView>
     </View>
-  );
+  )
 }
+
 const styles = StyleSheet.create({
-  view: {flex: 1, padding: 5, backgroundColor: Colors.blue900},
-  text: {fontSize: 20, color: 'white'},
-});
+  container: {},
+  bgImg: {
+    width: '100%',
+    height: 200,
+  },
+  topTextContainer: {
+    position: 'absolute',
+    bottom: 15,
+    left: 15,
+  },
+  topFontColor: {
+    color: '#000',
+  },
+})
+
+const Dot = styled.Text`
+  color: #fff;
+  margin-left: 5px;
+  margin-right: 5px;
+`
+
+const TopNormalContainer = styled.View`
+  flex-direction: row;
+`
+
+const Live = styled.Text`
+  color: #fff;
+`
+const TopNormal = styled.Text`
+  color: #fff;
+  font-weight: 700;
+`
+
+const TopBold = styled.Text`
+  color: #fff;
+  font-size: 23;
+  font-weight: 800;
+`
