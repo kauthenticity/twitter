@@ -1,35 +1,38 @@
-import React from 'react';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import Home from './Home';
-import Trend from './Trend';
-import Space from './Space';
-import Notification from './Notification';
-import Message from './Notification';
+import React from 'react'
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
+import {getHeaderTitle} from '@react-navigation/elements'
 
-import HomeIconOutline from '../Assets/Icons/home_outline.svg';
-import HomeIconFilled from '../Assets/Icons/home_filled.svg';
+import Home from './Home'
+import Trend from './Trend'
+import Space from './Space'
+import Notification from './Notification'
+import Message from './Notification'
+import HomeHeader from '../Components/HomeHeader'
+import SpaceHeader from '../Components/SpaceHeader'
+import Header from '../Components/Header'
 
-import TrendIconOutline from '../Assets/Icons/hashtag_outline.svg';
-import TrendIconFilled from '../Assets/Icons/hashtag_filled.svg';
-
-import SpaceIconOutline from '../Assets/Icons/mic_outline.svg';
-import SpaceIconFilled from '../Assets/Icons/mic_filled.svg';
-
-import NotificationIconOutline from '../Assets/Icons/notification_outline.svg';
-import NotificationIconFilled from '../Assets/Icons/notification_filled.svg';
-
-import MessageIconOutline from '../Assets/Icons/message_outline.svg';
-import MessageIconFilled from '../Assets/Icons/message_filled.svg';
+import HomeIconOutline from '../Assets/Icons/home_outline.svg'
+import HomeIconFilled from '../Assets/Icons/home_filled.svg'
+import TrendIconOutline from '../Assets/Icons/hashtag_outline.svg'
+import TrendIconFilled from '../Assets/Icons/hashtag_filled.svg'
+import SpaceIconOutline from '../Assets/Icons/mic_outline.svg'
+import SpaceIconFilled from '../Assets/Icons/mic_filled.svg'
+import NotificationIconOutline from '../Assets/Icons/notification_outline.svg'
+import NotificationIconFilled from '../Assets/Icons/notification_filled.svg'
+import MessageIconOutline from '../Assets/Icons/message_outline.svg'
+import MessageIconFilled from '../Assets/Icons/message_filled.svg'
+import SettingsIcon from '../Assets/Icons/settings.svg'
+import TimelineIcon from '../Assets/Icons/timeline.svg'
 
 type BottomTabParam = {
-  Home: undefined;
-  Happening: undefined;
-  Search: undefined;
-  Notification: undefined;
-  Message: undefined;
-};
+  Home: undefined
+  Trend: undefined
+  Space: undefined
+  Notifications: undefined
+  Message: undefined
+}
 
-const Tab = createBottomTabNavigator<BottomTabParam>();
+const Tab = createBottomTabNavigator<BottomTabParam>()
 
 export default function BottomTab() {
   return (
@@ -43,11 +46,16 @@ export default function BottomTab() {
         name="Home"
         options={{
           tabBarIcon: ({color, size, focused}) =>
-            focused ? (
-              <HomeIconFilled fill={color} width={size} height={size} />
-            ) : (
-              <HomeIconOutline fill={color} width={size} height={size} />
-            ),
+            focused ? <HomeIconFilled fill={color} width={size} height={size} /> : <HomeIconOutline fill={color} width={size} height={size} />,
+
+          header: ({navigation, route, options}) => {
+            const title = getHeaderTitle(options, route.name)
+            return (
+              <Header title={title} placeholder="Search Twitter">
+                <TimelineIcon width={24} height={24} fill={'#000'} />
+              </Header>
+            )
+          },
         }}
         component={Home}
       />
@@ -55,11 +63,15 @@ export default function BottomTab() {
         name="Trend"
         options={{
           tabBarIcon: ({color, size, focused}) =>
-            focused ? (
-              <TrendIconFilled fill={color} width={size} height={size} />
-            ) : (
-              <TrendIconOutline fill={color} width={size} height={size} />
-            ),
+            focused ? <TrendIconFilled fill={color} width={size} height={size} /> : <TrendIconOutline fill={color} width={size} height={size} />,
+          header: ({navigation, route, options}) => {
+            const title = getHeaderTitle(options, route.name)
+            return (
+              <Header title={title} placeholder="Search Twitter">
+                <SettingsIcon width={24} height={24} fill={'#000'} />
+              </Header>
+            )
+          },
         }}
         component={Trend}
       />
@@ -67,27 +79,27 @@ export default function BottomTab() {
         name="Space"
         options={{
           tabBarIcon: ({color, size, focused}) =>
-            focused ? (
-              <SpaceIconFilled fill={color} width={size} height={size} />
-            ) : (
-              <SpaceIconOutline fill={color} width={size} height={size} />
-            ),
+            focused ? <SpaceIconFilled fill={color} width={size} height={size} /> : <SpaceIconOutline fill={color} width={size} height={size} />,
+          header: ({navigation, route, options}) => {
+            const title = getHeaderTitle(options, route.name)
+            return <Header title={title} placeholder="Search for a Space"></Header>
+          },
         }}
         component={Space}
       />
       <Tab.Screen
-        name="Notification"
+        name="Notifications"
         options={{
           tabBarIcon: ({color, size, focused}) =>
-            focused ? (
-              <NotificationIconFilled fill={color} width={size} height={size} />
-            ) : (
-              <NotificationIconOutline
-                fill={color}
-                width={size}
-                height={size}
-              />
-            ),
+            focused ? <NotificationIconFilled fill={color} width={size} height={size} /> : <NotificationIconOutline fill={color} width={size} height={size} />,
+          header: ({navigation, route, options}) => {
+            const title = getHeaderTitle(options, route.name)
+            return (
+              <Header title={title} placeholder="Search for a Space" text>
+                <SettingsIcon width={24} height={24} fill={'#000'} />
+              </Header>
+            )
+          },
         }}
         component={Notification}
       />
@@ -95,14 +107,18 @@ export default function BottomTab() {
         name="Message"
         options={{
           tabBarIcon: ({color, size, focused}) =>
-            focused ? (
-              <MessageIconFilled fill={color} width={size} height={size} />
-            ) : (
-              <MessageIconOutline fill={color} width={size} height={size} />
-            ),
+            focused ? <MessageIconFilled fill={color} width={size} height={size} /> : <MessageIconOutline fill={color} width={size} height={size} />,
+          header: ({navigation, route, options}) => {
+            const title = getHeaderTitle(options, route.name)
+            return (
+              <Header title={title} placeholder="Search Direct Messages">
+                <SettingsIcon width={24} height={24} fill={'#000'} />
+              </Header>
+            )
+          },
         }}
         component={Message}
       />
     </Tab.Navigator>
-  );
+  )
 }
