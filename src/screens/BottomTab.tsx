@@ -7,8 +7,6 @@ import Trend from './Trend'
 import Space from './Space'
 import Notification from './Notification'
 import Message from './Notification'
-import HomeHeader from '../Components/HomeHeader'
-import SpaceHeader from '../Components/SpaceHeader'
 import Header from '../Components/Header'
 
 import HomeIconOutline from '../Assets/Icons/home_outline.svg'
