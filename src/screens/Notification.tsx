@@ -1,16 +1,32 @@
-import React from 'react';
-import {StyleSheet, View, Text} from 'react-native';
-import {Colors} from 'react-native-paper';
+import React from 'react'
+import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs'
+import All from '../Components/Notifications/All'
+import Mentions from '../Components/Notifications/Mentions'
+import AutoHeightImage from 'react-native-auto-height-image'
 
-const title = 'Notification';
-export default function Notification() {
-  return (
-    <View style={[styles.view]}>
-      <Text style={[styles.text]}>{title}</Text>
-    </View>
-  );
+type TopTabParam = {
+  All: undefined
+  Mentions: undefined
 }
-const styles = StyleSheet.create({
-  view: {flex: 1, padding: 5, backgroundColor: Colors.blue900},
-  text: {fontSize: 20, color: 'white'},
-});
+
+const Tab = createMaterialTopTabNavigator<TopTabParam>()
+
+function MyTabs() {
+  return (
+    <Tab.Navigator
+      screenOptions={{
+        tabBarLabelStyle: {fontSize: 12},
+        //tabBarItemStyle: {width: 100},
+        tabBarIndicatorStyle: {
+          width: 70,
+          height: 3,
+          borderRadius: 3,
+          backgroundColor: '#1C9BEF',
+        },
+      }}>
+      <Tab.Screen name="All" component={All} />
+      <Tab.Screen name="Mentions" component={Mentions} />
+    </Tab.Navigator>
+  )
+}
+export default MyTabs
