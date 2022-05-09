@@ -1,17 +1,17 @@
 import React from 'react'
 import styled from 'styled-components/native'
 import {StyleSheet, SectionList} from 'react-native'
-import TrendsForYouItem from './TrendsForYouItem'
-import trends from '../../data/trends'
+import WhoToFollowItem from './WhoToFollowItem'
+import followRecommends from '../../data/FollowRecommend'
 
 const WhoToFollow = () => {
   return (
     <Container>
       <SectionList
-        sections={trends}
-        keyExtractor={(item, index) => item.keyword + index}
+        sections={followRecommends}
+        keyExtractor={(item, index) => item.id + index}
         renderItem={({item}) => {
-          return <TrendsForYouItem trend={item} />
+          return <WhoToFollowItem followRecommend={item} />
         }}
         renderSectionHeader={({section: {title}}) => <TitleText>{title}</TitleText>}
         scrollEnabled={false}

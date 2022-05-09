@@ -4,6 +4,7 @@ import styled from 'styled-components/native'
 import TrendsForYou from '../Components/Trends/TrendsForYou'
 import WhatsHappening from '../Components/Trends/WhatsHappening'
 import WhoToFollow from '../Components/Trends/WhoToFollow'
+import Floating from '../Components/Trends/floating'
 
 export default function Happening() {
   return (
@@ -23,6 +24,7 @@ export default function Happening() {
         <WhatsHappening />
         <WhoToFollow />
       </ScrollView>
+      <Floating />
     </View>
   )
 }
