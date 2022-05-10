@@ -1,16 +1,24 @@
-import React from 'react';
-import {StyleSheet, View, Text} from 'react-native';
-import {Colors} from 'react-native-paper';
+import React, {useCallback} from 'react'
+import {StyleSheet, View, Text, FlatList, Alert} from 'react-native'
+import ChatListItem from '../Components/Messages/ChatListItem'
+import Chats from '../data/Chat'
+import Floating from '../Components/Utils/Floating'
+import MessageIcon from '../Assets/Icons/message_new.svg'
 
-const title = 'Message';
 export default function Message() {
+  const newMessagePress = useCallback(() => Alert.alert('new message pressed'), [])
+
   return (
     <View style={[styles.view]}>
-      <Text style={[styles.text]}>{title}</Text>
+      <FlatList
+        data={Chats}
+        renderItem={({item}) => <ChatListItem chat={item}></ChatListItem>}
+        keyExtractor={(item, index) => item.friendId + index}></FlatList>
+      <Floating Icon={MessageIcon} onPress={newMessagePress} />
     </View>
-  );
+  )
 }
 const styles = StyleSheet.create({
-  view: {flex: 1, padding: 5, backgroundColor: Colors.blue900},
+  view: {flex: 1, backgroundColor: '#fff'},
   text: {fontSize: 20, color: 'white'},
-});
+})
