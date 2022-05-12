@@ -1,23 +1,18 @@
 import React from 'react'
-import {NavigationContainer} from '@react-navigation/native'
-import {createDrawerNavigator, DrawerContentScrollView, DrawerItemList, DrawerItem} from '@react-navigation/drawer'
+import {createDrawerNavigator} from '@react-navigation/drawer'
+import BottomTab from './BottomTab'
+import DrawerContent from './Drawers/DrawerContent'
 
-const Drawer = createDrawerNavigator()
-
-function CustomDrawerContent(props) {
-  return (
-    <DrawerContentScrollView {...props}>
-      <DrawerItemList {...props} />
-      <DrawerItem label="Close drawer" onPress={() => props.navigation.closeDrawer()} />
-      <DrawerItem label="Toggle drawer" onPress={() => props.navigation.toggleDrawer()} />
-    </DrawerContentScrollView>
-  )
+type DrawerProps = {
+  BottomTab: undefined
 }
-function MyDrawer() {
+
+const Drawer = createDrawerNavigator<DrawerProps>()
+
+const MyDrawer = () => {
   return (
-    <Drawer.Navigator useLegacyImplementation drawerContent={props => <CustomDrawerContent {...props} />}>
-      <Drawer.Screen name="Feed" component={} />
-      <Drawer.Screen name="Notifications" component={} />
+    <Drawer.Navigator screenOptions={{headerShown: false}} drawerContent={props => <DrawerContent {...props} />}>
+      <Drawer.Screen name="BottomTab" component={BottomTab} />
     </Drawer.Navigator>
   )
 }

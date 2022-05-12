@@ -1,5 +1,6 @@
-import React from 'react'
+import React, {useCallback} from 'react'
 import {View, Text, Platform, TextInput, Image, StyleSheet, TouchableOpacity} from 'react-native'
+import {useNavigation, DrawerActions} from '@react-navigation/native'
 
 type HomeHeaderProps = {
   title: string
@@ -9,9 +10,15 @@ type HomeHeaderProps = {
 }
 
 const Header = ({title, placeholder, children, text}: HomeHeaderProps) => {
+  const navigation = useNavigation()
+
+  const openDrawer = useCallback(() => {
+    navigation.dispatch(DrawerActions.openDrawer())
+  }, [])
+
   return (
     <View style={[styles.viewStyle]}>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={openDrawer}>
         <Image style={[styles.image]} source={require('../Assets/Images/default_profile_400x400.png')} />
       </TouchableOpacity>
       <View style={styles.inputContainer}>
