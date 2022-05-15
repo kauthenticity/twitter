@@ -5,12 +5,12 @@ import {SafeAreaProvider} from 'react-native-safe-area-context'
 import {NavigationContainer} from '@react-navigation/native'
 import BottomTab from './src/screens/BottomTab'
 import Drawer from './src/screens/Drawer'
-
+import IndexNavigator from './src/screens/IndexStack'
 const App = () => {
   return (
     <SafeAreaProvider>
       <NavigationContainer>
-        <Drawer />
+        <IndexNavigator />
       </NavigationContainer>
     </SafeAreaProvider>
   )
