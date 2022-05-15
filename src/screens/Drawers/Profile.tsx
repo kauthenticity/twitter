@@ -1,9 +1,10 @@
 import React from 'react'
 import {View, StyleSheet} from 'react-native'
+import DrawerListItem from '../../Components/Drawer/DrawerListItem'
 
-const CopyMe = () => {
-  return <View></View>
+const Profile = () => {
+  return <DrawerListItem />
 }
-export default CopyMe
+export default Profile
 
 const styles = StyleSheet.create({})

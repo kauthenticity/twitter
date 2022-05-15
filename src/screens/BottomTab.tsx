@@ -2,7 +2,7 @@ import React from 'react'
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 import {getHeaderTitle} from '@react-navigation/elements'
 
-import Home from './Home'
+import Home from './Stacks/Home'
 import Trend from './Trend'
 import Space from './Space'
 import Notification from './Notification'
