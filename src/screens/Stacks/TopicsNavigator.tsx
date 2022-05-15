@@ -4,21 +4,19 @@ import {createStackNavigator} from '@react-navigation/stack'
 
 const Stack = createStackNavigator()
 
-const Profile = () => (
+const Topics = () => (
   <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
     <Text>Home screen!</Text>
   </View>
 )
 
-const ProfileStackNavigator = () => {
+export const TopicsStackNavigator = () => {
   return (
     <Stack.Navigator
       screenOptions={{
         headerShown: false,
       }}>
-      <Stack.Screen name="Profile" component={Profile} />
+      <Stack.Screen name="Topics" component={Topics} />
     </Stack.Navigator>
   )
 }
-
-export default ProfileStackNavigator

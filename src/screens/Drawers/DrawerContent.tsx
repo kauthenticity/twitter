@@ -20,19 +20,26 @@ import ProfessionalIcon from '../../Assets/Icons/professionals.svg'
 const DrawerContent = (props: DrawerContentComponentProps) => {
   const {navigation} = props
 
-  const onPressProfileImg = useCallback(() => Alert.alert('profile img clicked'), [])
   const onPressSwitchUser = useCallback(() => Alert.alert('switch user clicked'), [])
   const onPressBulb = useCallback(() => Alert.alert('bulb pressed'), [])
   const onPressQr = useCallback(() => Alert.alert('qr pressed'), [])
 
   const navigateProfile = useCallback(() => navigation.navigate('Profile'), [])
+  const navigateLists = useCallback(() => navigation.navigate('Lists'), [])
+  const navigateTopics = useCallback(() => navigation.navigate('Topics'), [])
+  const navigateBookmarks = useCallback(() => navigation.navigate('Bookmarks'), [])
+  const navigateMoments = useCallback(() => navigation.navigate('Moments'), [])
+  const navigatePurchases = useCallback(() => navigation.navigate('Purchases'), [])
+  const navigateMonetizations = useCallback(() => navigation.navigate('Monetizations'), [])
+  const navigateProfessionals = useCallback(() => navigation.navigate('Professionals'), [])
+  const navigateSettings = useCallback(() => navigation.navigate('Settings'), [])
 
   return (
     <>
       <DrawerContentScrollView {...props} contentContainerStyle={{flex: 1, marginHorizontal: 25, marginVertical: 10}}>
         <Header>
           <HeaderTop>
-            <TouchableOpacity onPress={onPressProfileImg}>
+            <TouchableOpacity onPress={navigateProfile}>
               <ProfileImg source={{uri: D.randomImage()}} />
             </TouchableOpacity>
             <TouchableOpacity onPress={onPressSwitchUser}>
@@ -60,43 +67,46 @@ const DrawerContent = (props: DrawerContentComponentProps) => {
             <UserIcon width={22} height={22} fill="#000" />
           </DrawerListItem>
         </TouchableOpacity>
-        <TouchableOpacity onPress={navigateProfile}>
+        <TouchableOpacity onPress={navigateLists}>
           <DrawerListItem label="Lists">
             <ListIcon width={22} height={22} fill="#000" />
           </DrawerListItem>
         </TouchableOpacity>
-        <TouchableOpacity onPress={navigateProfile}>
+        <TouchableOpacity onPress={navigateTopics}>
           <DrawerListItem label="Topics">
             <TopicIcon width={22} height={22} fill="#000" />
           </DrawerListItem>
         </TouchableOpacity>
-        <TouchableOpacity onPress={navigateProfile}>
+        <TouchableOpacity onPress={navigateBookmarks}>
           <DrawerListItem label="Bookmarks">
             <BookmarkIcon width={22} height={22} fill="#000" />
           </DrawerListItem>
         </TouchableOpacity>
-        <TouchableOpacity onPress={navigateProfile}>
+        <TouchableOpacity onPress={navigateMoments}>
           <DrawerListItem label="Moments">
             <MomentIcon width={22} height={22} fill="#000" />
           </DrawerListItem>
         </TouchableOpacity>
-        <TouchableOpacity onPress={navigateProfile}>
-          <DrawerListItem label="Carts">
+        <TouchableOpacity onPress={navigatePurchases}>
+          <DrawerListItem label="Purchases">
             <CartIcon width={22} height={22} fill="#000" />
           </DrawerListItem>
         </TouchableOpacity>
-        <TouchableOpacity onPress={navigateProfile}>
+        <TouchableOpacity onPress={navigateMonetizations} style={[styles.endList]}>
           <DrawerListItem label="Monetizations">
             <MoneyIcon width={22} height={22} fill="#000" />
           </DrawerListItem>
         </TouchableOpacity>
-        <TouchableOpacity onPress={navigateProfile}>
-          <DrawerListItem label="Professionals">
-            <ProfessionalIcon width={22} height={22} fill="#000" />
-          </DrawerListItem>
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Text>Settings and Privacy</Text>
+        <View style={[styles.professionalBorder]}>
+          <TouchableOpacity onPress={navigateProfessionals}>
+            <DrawerListItem label="Twitter for Professionals">
+              <ProfessionalIcon width={22} height={22} fill="#000" />
+            </DrawerListItem>
+          </TouchableOpacity>
+        </View>
+
+        <TouchableOpacity onPress={navigateSettings}>
+          <Text style={[styles.settings]}>Settings and Privacy</Text>
         </TouchableOpacity>
       </DrawerContentScrollView>
 
@@ -133,6 +143,21 @@ const styles = StyleSheet.create({
     marginRight: 10,
     fontSize: 13,
   },
+  endList: {
+    marginBottom: 10,
+  },
+  professionalBorder: {
+    marginTop: 10,
+    borderTopColor: '#f1f1f1',
+    borderTopWidth: 1,
+    borderBottomColor: '#f1f1f1',
+    borderBottomWidth: 1,
+    paddingVertical: 15,
+  },
+  settings: {
+    fontSize: 17,
+    paddingVertical: 30,
+  },
 })
 
 const Bottom = styled.View`
@@ -147,6 +172,7 @@ const Bottom = styled.View`
   padding-vertical: 10px;
   padding-horizontal: 25px;
   justify-content: space-between;
+  background-color: #fff;
 `
 
 const ProfileImg = styled.Image`
@@ -155,12 +181,14 @@ const ProfileImg = styled.Image`
   border-radius: 25px;
 `
 
-const Header = styled.View``
+const Header = styled.View`
+  margin-bottom: 10px;
+`
 
 const HeaderTop = styled.View`
   flex-direction: row;
   justify-content: space-between;
-  margin-bottom: 5;
+  margin-bottom: 5px;
 `
 const HeaderName = styled.View`
   margin-vertical: 5px;

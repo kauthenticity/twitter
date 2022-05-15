@@ -10,7 +10,7 @@ const DrawerListItem = ({label, children}: DrawerListItemProps) => {
   return (
     <View style={[styles.container]}>
       <View style={[styles.icon]}>{children}</View>
-      <Text>{label}</Text>
+      <Text style={[styles.label]}>{label}</Text>
     </View>
   )
 }
@@ -19,12 +19,13 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
+    marginVertical: 15,
   },
   label: {
-    fontSize: 16,
+    fontSize: 17,
   },
   icon: {
-    marginRight: 10,
+    marginRight: 15,
   },
 })
 
