@@ -9,6 +9,13 @@ import UserAddIcon from '../../Assets/Icons/addAccount.svg'
 import BulbIcon from '../../Assets/Icons/bulb.svg'
 import QrIcon from '../../Assets/Icons/qrcode.svg'
 import UserIcon from '../../Assets/Icons/user.svg'
+import ListIcon from '../../Assets/Icons/lists.svg'
+import TopicIcon from '../../Assets/Icons/topics.svg'
+import BookmarkIcon from '../../Assets/Icons/bookmarks.svg'
+import MomentIcon from '../../Assets/Icons/moments.svg'
+import CartIcon from '../../Assets/Icons/cart.svg'
+import MoneyIcon from '../../Assets/Icons/money.svg'
+import ProfessionalIcon from '../../Assets/Icons/professionals.svg'
 
 const DrawerContent = (props: DrawerContentComponentProps) => {
   const {navigation} = props
@@ -22,7 +29,7 @@ const DrawerContent = (props: DrawerContentComponentProps) => {
 
   return (
     <>
-      <DrawerContentScrollView {...props} contentContainerStyle={{flex: 1, marginVertical: 25, marginHorizontal: 10}}>
+      <DrawerContentScrollView {...props} contentContainerStyle={{flex: 1, marginHorizontal: 25, marginVertical: 10}}>
         <Header>
           <HeaderTop>
             <TouchableOpacity onPress={onPressProfileImg}>
@@ -53,7 +60,46 @@ const DrawerContent = (props: DrawerContentComponentProps) => {
             <UserIcon width={22} height={22} fill="#000" />
           </DrawerListItem>
         </TouchableOpacity>
+        <TouchableOpacity onPress={navigateProfile}>
+          <DrawerListItem label="Lists">
+            <ListIcon width={22} height={22} fill="#000" />
+          </DrawerListItem>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={navigateProfile}>
+          <DrawerListItem label="Topics">
+            <TopicIcon width={22} height={22} fill="#000" />
+          </DrawerListItem>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={navigateProfile}>
+          <DrawerListItem label="Bookmarks">
+            <BookmarkIcon width={22} height={22} fill="#000" />
+          </DrawerListItem>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={navigateProfile}>
+          <DrawerListItem label="Moments">
+            <MomentIcon width={22} height={22} fill="#000" />
+          </DrawerListItem>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={navigateProfile}>
+          <DrawerListItem label="Carts">
+            <CartIcon width={22} height={22} fill="#000" />
+          </DrawerListItem>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={navigateProfile}>
+          <DrawerListItem label="Monetizations">
+            <MoneyIcon width={22} height={22} fill="#000" />
+          </DrawerListItem>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={navigateProfile}>
+          <DrawerListItem label="Professionals">
+            <ProfessionalIcon width={22} height={22} fill="#000" />
+          </DrawerListItem>
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Text>Settings and Privacy</Text>
+        </TouchableOpacity>
       </DrawerContentScrollView>
+
       <Bottom>
         <TouchableOpacity onPress={onPressBulb}>
           <BulbIcon width={22} height={22} fill="#000" />

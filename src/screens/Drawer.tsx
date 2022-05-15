@@ -13,9 +13,7 @@ const Drawer = createDrawerNavigator<DrawerProps>()
 
 const MyDrawer = () => {
   return (
-    <Drawer.Navigator
-      screenOptions={{headerShown: false, drawerStyle: {width: '80%', marginVertical: 25, marginHorizontal: 10}}}
-      drawerContent={props => <DrawerContent {...props} />}>
+    <Drawer.Navigator screenOptions={{headerShown: false, drawerStyle: {width: '80%'}}} drawerContent={props => <DrawerContent {...props} />}>
       <Drawer.Screen name="BottomTab" component={BottomTab} />
       <Drawer.Screen name="Profile" component={Profile} />
     </Drawer.Navigator>
