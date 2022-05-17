@@ -4,5 +4,6 @@ declare namespace ReactNavigation {
     LoginId: undefined
     LoginPw: {id: string}
     Forgot: undefined
+    Main: undefined
   }
 }

@@ -1,9 +1,10 @@
-import React, {useCallback} from 'react'
-import {View, Text, TouchableOpacity, StyleSheet, Alert} from 'react-native'
+import React, {useCallback, useMemo} from 'react'
+import {View, Text, TouchableOpacity, StyleSheet, Alert, AppState} from 'react-native'
 import type {DrawerContentComponentProps} from '@react-navigation/drawer'
 import {DrawerContentScrollView} from '@react-navigation/drawer'
 import styled from 'styled-components/native'
 import * as D from '../../data'
+import {useSelector} from '../../Redux/hooks'
 import DrawerListItem from '../../Components/Drawer/DrawerListItem'
 import UserAddIcon from '../../Assets/Icons/addAccount.svg'
 import BulbIcon from '../../Assets/Icons/bulb.svg'
@@ -33,6 +34,10 @@ const DrawerContent = (props: DrawerContentComponentProps) => {
   const navigateMonetizations = useCallback(() => navigation.navigate('Monetizations'), [])
   const navigateProfessionals = useCallback(() => navigation.navigate('Professionals'), [])
   const navigateSettings = useCallback(() => navigation.navigate('Settings'), [])
+  const id = useSelector(state => {
+    console.log(state)
+    return state.user.user.id
+  })
 
   return (
     <>
@@ -48,7 +53,7 @@ const DrawerContent = (props: DrawerContentComponentProps) => {
           </HeaderTop>
           <HeaderName>
             <Text style={[styles.name]}>강진실</Text>
-            <Text style={[styles.gray, styles.small]}>@kauthenticity</Text>
+            <Text style={[styles.gray, styles.small]}>@{id}</Text>
           </HeaderName>
           <HeaderFollow>
             <FollowContainer>

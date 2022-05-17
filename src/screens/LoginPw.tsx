@@ -4,20 +4,15 @@ import {useNavigation, useRoute} from '@react-navigation/native'
 import {SafeAreaView} from 'react-native-safe-area-context'
 import {useAutoFocus} from '../Contexts'
 import Header from '../Components/Index/Header'
-
-// import {RouteProp} from '@react-navigation/native'
-
-// type RoutePropType = RouteProp<RootParamList, 'LoginPw'>
-
-// type Props = {
-//   route: RoutePropType
-// }
+import {login} from '../Redux/User/User'
+import {useDispatch} from 'react-redux'
 
 const greyColor = '#526371'
 const twitterBlue = '#1C9BEF'
 
 const LoginPw = () => {
   const route = useRoute()
+  const dispatch = useDispatch()
   const [pw, setPw] = useState<string>('')
   const navigation = useNavigation()
   const focus = useAutoFocus()
@@ -25,6 +20,12 @@ const LoginPw = () => {
   const {id} = route.params
 
   const navigateForgot = useCallback(() => navigation.navigate('Forgot'), [])
+  const onPressLogin = useCallback(() => {
+    if (pw !== '') {
+      dispatch(login({id: id, password: pw}))
+      navigation.navigate('Main')
+    }
+  }, [pw])
 
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: '#fff'}}>
@@ -44,13 +45,13 @@ const LoginPw = () => {
             value={pw}></TextInput>
         </View>
         <View style={[styles.forgotView]}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={onPressLogin}>
             <View style={[styles.buttonDefault, {backgroundColor: pw === '' ? '#87898b' : '#000'}]}>
-              <Text style={[{fontWeight: '700', color: pw === '' ? '#c3c4c5' : '#fff'}]}>Log in</Text>
+              <Text style={[{fontWeight: '800', color: pw === '' ? '#c3c4c5' : '#fff'}]}>Log in</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity onPress={navigateForgot}>
-            <Text>Forgot Password?</Text>
+            <Text style={styles.forgotText}>Forgot Password?</Text>
           </TouchableOpacity>
         </View>
       </KeyboardAvoidingView>
@@ -105,4 +106,9 @@ const styles = StyleSheet.create({
     color: '#c3c4c5',
   },
   buttonFilled: {},
+  forgotText: {
+    textDecorationLine: 'underline',
+    fontWeight: '800',
+    fontSize: 16,
+  },
 })

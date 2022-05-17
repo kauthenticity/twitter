@@ -43,7 +43,7 @@ const Login = () => {
 
           <TouchableOpacity onPress={navigateLoginPw}>
             <View style={[styles.buttonDefault, {backgroundColor: id === '' ? '#87898b' : '#000'}]}>
-              <Text style={[{fontWeight: '700', color: id === '' ? '#c3c4c5' : '#fff'}]}>Next</Text>
+              <Text style={[{fontWeight: '800', color: id === '' ? '#c3c4c5' : '#fff'}]}>Next</Text>
             </View>
           </TouchableOpacity>
         </View>
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: '#fff',
     alignItems: 'center',
-    paddingHorizontal: 25,
+    paddingHorizontal: 20,
     justifyContent: 'space-between',
     flex: 1,
   },
