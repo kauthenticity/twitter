@@ -10,7 +10,7 @@ const Profile = () => (
   </View>
 )
 
-export const ProfileStackNavigator = () => {
+export const ProfileNavigator = () => {
   return (
     <Stack.Navigator
       screenOptions={{

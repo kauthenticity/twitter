@@ -23,7 +23,7 @@ const MyDrawer = () => {
   return (
     <Drawer.Navigator screenOptions={{headerShown: false, drawerStyle: {width: '80%'}}} drawerContent={props => <DrawerContent {...props} />}>
       <Drawer.Screen name="BottomTab" component={BottomTab} />
-      <Drawer.Screen name="Profile" component={stack.ProfileStackNavigator} />
+      {/* <Drawer.Screen name="Profile" component={stack.ProfileStackNavigator} />
       <Drawer.Screen name="Lists" component={stack.ListsStackNavigator} />
       <Drawer.Screen name="Topics" component={stack.TopicsStackNavigator} />
       <Drawer.Screen name="Bookmarks" component={stack.BookmarksStackNavigator} />
@@ -31,7 +31,7 @@ const MyDrawer = () => {
       <Drawer.Screen name="Purchases" component={stack.PurchasesStackNavigator} />
       <Drawer.Screen name="Monetizations" component={stack.MonetizationStackNavigator} />
       <Drawer.Screen name="Professionals" component={stack.ProfessionalsStackNavigator} />
-      <Drawer.Screen name="Settings" component={stack.SettingsStackNavigator} />
+      <Drawer.Screen name="Settings" component={stack.SettingsStackNavigator} /> */}
     </Drawer.Navigator>
   )
 }

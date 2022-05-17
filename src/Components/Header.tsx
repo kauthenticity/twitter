@@ -1,6 +1,7 @@
 import React, {useCallback} from 'react'
 import {View, Text, Platform, TextInput, Image, StyleSheet, TouchableOpacity} from 'react-native'
 import {useNavigation, DrawerActions} from '@react-navigation/native'
+import {useSelector} from '../Redux/hooks'
 
 type HomeHeaderProps = {
   title: string
@@ -11,6 +12,7 @@ type HomeHeaderProps = {
 
 const Header = ({title, placeholder, children, text}: HomeHeaderProps) => {
   const navigation = useNavigation()
+  const {profileUri} = useSelector(state => state.user.user)
 
   const openDrawer = useCallback(() => {
     navigation.dispatch(DrawerActions.openDrawer())
@@ -19,7 +21,7 @@ const Header = ({title, placeholder, children, text}: HomeHeaderProps) => {
   return (
     <View style={[styles.viewStyle]}>
       <TouchableOpacity onPress={openDrawer}>
-        <Image style={[styles.image]} source={require('../Assets/Images/default_profile_400x400.png')} />
+        <Image style={[styles.image]} source={{uri: profileUri}} />
       </TouchableOpacity>
       <View style={styles.inputContainer}>
         {text ? <Text style={styles.title}>{title}</Text> : <TextInput style={styles.textInput} placeholder={placeholder} />}

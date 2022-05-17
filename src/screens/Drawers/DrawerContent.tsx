@@ -25,19 +25,17 @@ const DrawerContent = (props: DrawerContentComponentProps) => {
   const onPressBulb = useCallback(() => Alert.alert('bulb pressed'), [])
   const onPressQr = useCallback(() => Alert.alert('qr pressed'), [])
 
-  const navigateProfile = useCallback(() => navigation.navigate('Profile'), [])
-  const navigateLists = useCallback(() => navigation.navigate('Lists'), [])
-  const navigateTopics = useCallback(() => navigation.navigate('Topics'), [])
-  const navigateBookmarks = useCallback(() => navigation.navigate('Bookmarks'), [])
-  const navigateMoments = useCallback(() => navigation.navigate('Moments'), [])
-  const navigatePurchases = useCallback(() => navigation.navigate('Purchases'), [])
-  const navigateMonetizations = useCallback(() => navigation.navigate('Monetizations'), [])
-  const navigateProfessionals = useCallback(() => navigation.navigate('Professionals'), [])
-  const navigateSettings = useCallback(() => navigation.navigate('Settings'), [])
-  const id = useSelector(state => {
-    console.log(state)
-    return state.user.user.id
-  })
+  const navigateProfile = useCallback(() => navigation.navigate('MessageNavigator', {type: 'Profile'}), [])
+  const navigateLists = useCallback(() => navigation.navigate('MessageNavigator', {type: 'Lists'}), [])
+  const navigateTopics = useCallback(() => navigation.navigate('MessageNavigator', {type: 'Topics'}), [])
+  const navigateBookmarks = useCallback(() => navigation.navigate('MessageNavigator', {type: 'Bookmarks'}), [])
+  const navigateMoments = useCallback(() => navigation.navigate('MessageNavigator', {type: 'Moments'}), [])
+  const navigatePurchases = useCallback(() => navigation.navigate('MessageNavigator', {type: 'Purchases'}), [])
+  const navigateMonetizations = useCallback(() => navigation.navigate('MessageNavigator', {type: 'Monetizations'}), [])
+  const navigateProfessionals = useCallback(() => navigation.navigate('MessageNavigator', {type: 'Professionals'}), [])
+  const navigateSettings = useCallback(() => navigation.navigate('MessageNavigator', {type: 'Settings'}), [])
+
+  const {id, followers, following, profileUri} = useSelector(state => state.user.user)
 
   return (
     <>
@@ -45,23 +43,23 @@ const DrawerContent = (props: DrawerContentComponentProps) => {
         <Header>
           <HeaderTop>
             <TouchableOpacity onPress={navigateProfile}>
-              <ProfileImg source={{uri: D.randomImage()}} />
+              <ProfileImg source={{uri: profileUri}} />
             </TouchableOpacity>
             <TouchableOpacity onPress={onPressSwitchUser}>
               <UserAddIcon width={30} height={30} fill="#000" />
             </TouchableOpacity>
           </HeaderTop>
           <HeaderName>
-            <Text style={[styles.name]}>강진실</Text>
+            <Text style={[styles.name, {fontWeight: '800'}]}>강진실</Text>
             <Text style={[styles.gray, styles.small]}>@{id}</Text>
           </HeaderName>
           <HeaderFollow>
             <FollowContainer>
-              <Text style={styles.number}>1</Text>
+              <Text style={styles.number}>{following}</Text>
               <Text style={[styles.gray, styles.follow]}>Following</Text>
             </FollowContainer>
             <FollowContainer>
-              <Text style={styles.number}>0</Text>
+              <Text style={styles.number}>{followers}</Text>
               <Text style={[styles.gray, styles.follow]}>Followers</Text>
             </FollowContainer>
           </HeaderFollow>

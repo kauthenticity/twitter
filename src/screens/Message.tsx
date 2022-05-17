@@ -4,9 +4,19 @@ import ChatListItem from '../Components/Messages/ChatListItem'
 import Chats from '../data/Chat'
 import Floating from '../Components/Utils/Floating'
 import MessageIcon from '../Assets/Icons/message_new.svg'
+import {useNavigation} from '@react-navigation/native'
+import {useRoute} from '@react-navigation/native'
 
 export default function Message() {
-  const newMessagePress = useCallback(() => Alert.alert('new message pressed'), [])
+  const route = useRoute()
+  const navigation = useNavigation()
+  const newMessagePress = useCallback(() => navigation.navigate('ProfileNavigator'), [])
+  const {type} = route.params
+  if (type != '') {
+    if (type == 'Profile') {
+      navigation.navigate('ProfileNavigator')
+    }
+  }
 
   return (
     <View style={[styles.view]}>
@@ -14,6 +24,7 @@ export default function Message() {
         data={Chats}
         renderItem={({item}) => <ChatListItem chat={item}></ChatListItem>}
         keyExtractor={(item, index) => item.friendId + index}></FlatList>
+
       <Floating Icon={MessageIcon} onPress={newMessagePress} />
     </View>
   )

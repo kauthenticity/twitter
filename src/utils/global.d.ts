@@ -5,5 +5,7 @@ declare namespace ReactNavigation {
     LoginPw: {id: string}
     Forgot: undefined
     Main: undefined
+    MessageNavigator: undefined
+    ProfileNavigator: undefined
   }
 }

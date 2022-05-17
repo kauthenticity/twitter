@@ -3,9 +3,9 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 import {getHeaderTitle} from '@react-navigation/elements'
 
 import HomeNavigator from './Stacks/HomeNavigator'
-import TrendNavigator from './Stacks/TrendNavigator'
-import SpaceNavigator from './Stacks/SpaceNavigator'
-import NotificationNavigator from './Stacks/NotificationNavigator'
+import Trend from './Trend'
+import Space from './Space'
+import Notification from './Notification'
 import MessageNavigator from './Stacks/MessageNavigator'
 import Header from '../Components/Header'
 
@@ -24,10 +24,10 @@ import TimelineIcon from '../Assets/Icons/timeline.svg'
 
 type BottomTabParam = {
   HomeNavigator: undefined
-  TrendNavigator: undefined
-  SpaceNavigator: undefined
-  NotificationNavigator: undefined
-  MessageNavigator: {type: string}
+  Trend: undefined
+  Space: undefined
+  Notifications: undefined
+  MessageNavigator: undefined
 }
 
 const Tab = createBottomTabNavigator<BottomTabParam>()
@@ -58,7 +58,7 @@ export default function BottomTab() {
         component={HomeNavigator}
       />
       <Tab.Screen
-        name="TrendNavigator"
+        name="Trend"
         options={{
           tabBarIcon: ({color, size, focused}) =>
             focused ? <TrendIconFilled fill={color} width={size} height={size} /> : <TrendIconOutline fill={color} width={size} height={size} />,
@@ -71,10 +71,10 @@ export default function BottomTab() {
             )
           },
         }}
-        component={TrendNavigator}
+        component={Trend}
       />
       <Tab.Screen
-        name="SpaceNavigator"
+        name="Space"
         options={{
           tabBarIcon: ({color, size, focused}) =>
             focused ? <SpaceIconFilled fill={color} width={size} height={size} /> : <SpaceIconOutline fill={color} width={size} height={size} />,
@@ -83,10 +83,10 @@ export default function BottomTab() {
             return <Header title={title} placeholder="Search for a Space"></Header>
           },
         }}
-        component={SpaceNavigator}
+        component={Space}
       />
       <Tab.Screen
-        name="NotificationNavigator"
+        name="Notifications"
         options={{
           tabBarIcon: ({color, size, focused}) =>
             focused ? <NotificationIconFilled fill={color} width={size} height={size} /> : <NotificationIconOutline fill={color} width={size} height={size} />,
@@ -99,7 +99,7 @@ export default function BottomTab() {
             )
           },
         }}
-        component={NotificationNavigator}
+        component={Notification}
       />
       <Tab.Screen
         name="MessageNavigator"

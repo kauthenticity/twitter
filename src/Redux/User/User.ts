@@ -5,6 +5,9 @@ import type {RootState} from '../store'
 interface UserInfo {
   id: string
   password: string
+  following: number
+  followers: number
+  profileUri: string
 }
 
 export type UserState = {
@@ -14,7 +17,14 @@ export type UserState = {
 // Define the initial state using that type
 const initialState: UserState = {
   loggedIn: false,
-  user: {id: '', password: ''},
+  user: {
+    id: '',
+    password: '',
+    following: 45,
+    followers: 17,
+    profileUri:
+      'https://postfiles.pstatic.net/MjAyMjA1MTdfMTQx/MDAxNjUyNzYyNTM4NjAx.r4F8cIpClCyzgIaiwgE7Htn1FclRdvG_ngBV1vXLETsg.tqkW2Hrrp3jbc8vpGwe8PQJxPF-alaaz5WDPZDWI-9Qg.JPEG.js7056/C7DD65AD-F3DA-41FD-918E-027E41517351.jpeg?type=w966',
+  },
 }
 
 export const userSlice = createSlice({

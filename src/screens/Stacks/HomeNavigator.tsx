@@ -1,22 +1,11 @@
 import React from 'react'
 import {StyleSheet, View, FlatList, Text} from 'react-native'
-import styled from 'styled-components/native'
-import Tweet from '../../Components/Home/Tweet'
-import Separator from '../../Components/Home/Separator'
+import Home from '../Home'
 import * as D from '../../data'
 
 import {createStackNavigator} from '@react-navigation/stack'
 
 const Stack = createStackNavigator()
-const people: D.IPerson[] = D.makeArray(10).map(D.createRandomPerson)
-
-const Home = () => {
-  return (
-    <View style={[styles.view]}>
-      <FlatList data={people} renderItem={({item}) => <Tweet person={item} />} keyExtractor={item => item._id} />
-    </View>
-  )
-}
 
 const HomeNavigator = () => {
   return (
@@ -24,7 +13,7 @@ const HomeNavigator = () => {
       screenOptions={{
         headerShown: false,
       }}>
-      <Stack.Screen name="Book" component={Home} />
+      <Stack.Screen name="Home" component={Home} />
     </Stack.Navigator>
   )
 }
