@@ -1,5 +1,8 @@
 declare namespace ReactNavigation {
   interface RootParamList {
-    BottomTab: undefined
+    Index: undefined
+    LoginId: undefined
+    LoginPw: {id: string}
+    Forgot: undefined
   }
 }
