@@ -6,11 +6,11 @@ const Stack = createStackNavigator()
 
 const Profile = () => (
   <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-    <Text>Home screen!</Text>
+    <Text>List screen!</Text>
   </View>
 )
 
-export const ListsStackNavigator = () => {
+export const ListsNavigator = () => {
   return (
     <Stack.Navigator
       screenOptions={{

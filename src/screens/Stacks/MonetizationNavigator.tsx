@@ -6,11 +6,11 @@ const Stack = createStackNavigator()
 
 const Monetization = () => (
   <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-    <Text>Home screen!</Text>
+    <Text>Monetizations screen!</Text>
   </View>
 )
 
-export const MonetizationStackNavigator = () => {
+export const MonetizationNavigator = () => {
   return (
     <Stack.Navigator
       screenOptions={{

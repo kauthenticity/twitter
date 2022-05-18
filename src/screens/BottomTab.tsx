@@ -39,6 +39,7 @@ export default function BottomTab() {
         tabBarShowLabel: false,
         tabBarActiveTintColor: '#000',
         tabBarInactiveTintColor: '#000',
+        headerShown: false,
       }}>
       <Tab.Screen
         name="HomeNavigator"
@@ -106,14 +107,14 @@ export default function BottomTab() {
         options={{
           tabBarIcon: ({color, size, focused}) =>
             focused ? <MessageIconFilled fill={color} width={size} height={size} /> : <MessageIconOutline fill={color} width={size} height={size} />,
-          header: ({navigation, route, options}) => {
-            const title = getHeaderTitle(options, route.name)
-            return (
-              <Header title={title} placeholder="Search Direct Messages">
-                <SettingsIcon width={24} height={24} fill={'#000'} />
-              </Header>
-            )
-          },
+          // header: ({navigation, route, options}) => {
+          //   const title = getHeaderTitle(options, route.name)
+          //   return (
+          //     <Header title={title} placeholder="Search Direct Messages">
+          //       <SettingsIcon width={24} height={24} fill={'#000'} />
+          //     </Header>
+          //   )
+          // },
         }}
         component={MessageNavigator}
       />

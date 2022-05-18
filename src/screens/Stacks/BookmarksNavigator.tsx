@@ -6,11 +6,11 @@ const Stack = createStackNavigator()
 
 const Bookmarks = () => (
   <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-    <Text>Home screen!</Text>
+    <Text>Bookmarks screen!</Text>
   </View>
 )
 
-export const BookmarksStackNavigator = () => {
+export const BookmarksNavigator = () => {
   return (
     <Stack.Navigator
       screenOptions={{

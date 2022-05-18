@@ -6,20 +6,21 @@ import Floating from '../Components/Utils/Floating'
 import MessageIcon from '../Assets/Icons/message_new.svg'
 import {useNavigation} from '@react-navigation/native'
 import {useRoute} from '@react-navigation/native'
+import {useEffect} from 'react'
+import Header from '../Components/Header'
+
+import SettingsIcon from '../Assets/Icons/settings.svg'
 
 export default function Message() {
   const route = useRoute()
   const navigation = useNavigation()
   const newMessagePress = useCallback(() => navigation.navigate('ProfileNavigator'), [])
-  const {type} = route.params
-  if (type != '') {
-    if (type == 'Profile') {
-      navigation.navigate('ProfileNavigator')
-    }
-  }
 
   return (
     <View style={[styles.view]}>
+      <Header title="Message" placeholder="Search Direct Messages">
+        <SettingsIcon width={24} height={24} fill={'#000'} />
+      </Header>
       <FlatList
         data={Chats}
         renderItem={({item}) => <ChatListItem chat={item}></ChatListItem>}

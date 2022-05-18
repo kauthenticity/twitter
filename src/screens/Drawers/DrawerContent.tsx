@@ -24,16 +24,40 @@ const DrawerContent = (props: DrawerContentComponentProps) => {
   const onPressSwitchUser = useCallback(() => Alert.alert('switch user clicked'), [])
   const onPressBulb = useCallback(() => Alert.alert('bulb pressed'), [])
   const onPressQr = useCallback(() => Alert.alert('qr pressed'), [])
+  const navigateProfile = useCallback(() => navigation.navigate('MessageNavigator', {screen: 'ProfileNavigator', initial: false}), [])
 
-  const navigateProfile = useCallback(() => navigation.navigate('MessageNavigator', {type: 'Profile'}), [])
-  const navigateLists = useCallback(() => navigation.navigate('MessageNavigator', {type: 'Lists'}), [])
-  const navigateTopics = useCallback(() => navigation.navigate('MessageNavigator', {type: 'Topics'}), [])
-  const navigateBookmarks = useCallback(() => navigation.navigate('MessageNavigator', {type: 'Bookmarks'}), [])
-  const navigateMoments = useCallback(() => navigation.navigate('MessageNavigator', {type: 'Moments'}), [])
-  const navigatePurchases = useCallback(() => navigation.navigate('MessageNavigator', {type: 'Purchases'}), [])
-  const navigateMonetizations = useCallback(() => navigation.navigate('MessageNavigator', {type: 'Monetizations'}), [])
-  const navigateProfessionals = useCallback(() => navigation.navigate('MessageNavigator', {type: 'Professionals'}), [])
-  const navigateSettings = useCallback(() => navigation.navigate('MessageNavigator', {type: 'Settings'}), [])
+  const navigateLists = useCallback(() => {
+    navigation.closeDrawer()
+    navigation.navigate('MessageNavigator', {screen: 'ListsNavigator', initial: false})
+  }, [])
+  const navigateTopics = useCallback(() => {
+    navigation.closeDrawer()
+    navigation.navigate('MessageNavigator', {screen: 'TopicsNavigator', initial: false})
+  }, [])
+  const navigateBookmarks = useCallback(() => {
+    navigation.closeDrawer()
+    navigation.navigate('MessageNavigator', {screen: 'BookmarksNavigator', initial: false})
+  }, [])
+  const navigateMoments = useCallback(() => {
+    navigation.closeDrawer()
+    navigation.navigate('MessageNavigator', {screen: 'MomentsNavigator', initial: false})
+  }, [])
+  const navigatePurchases = useCallback(() => {
+    navigation.closeDrawer()
+    navigation.navigate('MessageNavigator', {screen: 'PurchasesNavigator', initial: false})
+  }, [])
+  const navigateMonetizations = useCallback(() => {
+    navigation.closeDrawer()
+    navigation.navigate('MessageNavigator', {screen: 'MonetizationNavigator', initial: false})
+  }, [])
+  const navigateProfessionals = useCallback(() => {
+    navigation.closeDrawer()
+    navigation.navigate('MessageNavigator', {screen: 'ProfessionalsNavigator', initial: false})
+  }, [])
+  const navigateSettings = useCallback(() => {
+    navigation.closeDrawer()
+    navigation.navigate('MessageNavigator', {screen: 'SettingsNavigator', initial: false})
+  }, [])
 
   const {id, followers, following, profileUri} = useSelector(state => state.user.user)
 

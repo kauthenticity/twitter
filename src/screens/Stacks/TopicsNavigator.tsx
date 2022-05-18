@@ -6,11 +6,11 @@ const Stack = createStackNavigator()
 
 const Topics = () => (
   <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-    <Text>Home screen!</Text>
+    <Text>Topics screen!</Text>
   </View>
 )
 
-export const TopicsStackNavigator = () => {
+export const TopicsNavigator = () => {
   return (
     <Stack.Navigator
       screenOptions={{

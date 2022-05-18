@@ -7,5 +7,13 @@ declare namespace ReactNavigation {
     Main: undefined
     MessageNavigator: undefined
     ProfileNavigator: undefined
+    ListsNavigator: undefined
+    BookmarsNavigator: undefined
+    MomentsNavigator: undefined
+    MonetizationNavigator: undefined
+    ProfessionalsNavigator: undefined
+    PurchasesNavigator: undefined
+    SettingsNavigator: undefined
+    TopicsNavigator: undefined
   }
 }

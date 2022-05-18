@@ -6,11 +6,11 @@ const Stack = createStackNavigator()
 
 const Purchases = () => (
   <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-    <Text>Home screen!</Text>
+    <Text>Purchases screen!</Text>
   </View>
 )
 
-export const PurchasesStackNavigator = () => {
+export const PurchasesNavigator = () => {
   return (
     <Stack.Navigator
       screenOptions={{

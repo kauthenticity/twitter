@@ -13,7 +13,7 @@ const HomeNavigator = () => {
       screenOptions={{
         headerShown: false,
       }}>
-      <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen options={{gestureEnabled: false}} name="Home" component={Home} />
     </Stack.Navigator>
   )
 }

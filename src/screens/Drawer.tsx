@@ -21,7 +21,9 @@ const Drawer = createDrawerNavigator<DrawerProps>()
 
 const MyDrawer = () => {
   return (
-    <Drawer.Navigator screenOptions={{headerShown: false, drawerStyle: {width: '80%'}}} drawerContent={props => <DrawerContent {...props} />}>
+    <Drawer.Navigator
+      screenOptions={{swipeEdgeWidth: 0, headerShown: false, drawerStyle: {width: '80%'}}}
+      drawerContent={props => <DrawerContent {...props} />}>
       <Drawer.Screen name="BottomTab" component={BottomTab} />
       {/* <Drawer.Screen name="Profile" component={stack.ProfileStackNavigator} />
       <Drawer.Screen name="Lists" component={stack.ListsStackNavigator} />
