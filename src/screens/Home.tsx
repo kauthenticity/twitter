@@ -2,14 +2,17 @@ import React from 'react'
 import {StyleSheet, View, FlatList} from 'react-native'
 import Tweet from '../Components/Home/Tweet'
 import * as D from '../data'
-
-import {createStackNavigator} from '@react-navigation/stack'
+import Header from '../Components/Header'
+import TimelineIcon from '../Assets/Icons/timeline.svg'
 
 const people: D.IPerson[] = D.makeArray(10).map(D.createRandomPerson)
 
 const Home = () => {
   return (
     <View style={[styles.view]}>
+      <Header title="Home" placeholder="Search Twitter">
+        <TimelineIcon width={24} height={24} fill={'#000'} />
+      </Header>
       <FlatList data={people} renderItem={({item}) => <Tweet person={item} />} keyExtractor={item => item._id} />
     </View>
   )

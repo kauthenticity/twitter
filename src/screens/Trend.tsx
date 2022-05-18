@@ -5,10 +5,15 @@ import TrendsForYou from '../Components/Trends/TrendsForYou'
 import WhatsHappening from '../Components/Trends/WhatsHappening'
 import WhoToFollow from '../Components/Trends/WhoToFollow'
 import Floating from '../Components/Trends/floating'
+import Header from '../Components/Header'
+import SettingsIcon from '../Assets/Icons/settings.svg'
 
 export default function Happening() {
   return (
     <View style={[styles.container]}>
+      <Header title="Trend" placeholder="Search Twitter">
+        <SettingsIcon width={24} height={24} fill={'#000'} />
+      </Header>
       <ScrollView>
         <ImageBackground source={require('../Assets/Images/trend.jpeg')} resizeMode="cover" style={styles.bgImg}>
           <View style={[styles.topTextContainer]}>

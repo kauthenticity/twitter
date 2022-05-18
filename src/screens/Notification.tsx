@@ -5,6 +5,8 @@ import {View, Text, Dimensions, StyleSheet} from 'react-native'
 import All from '../Components/Notifications/All'
 import Mentions from '../Components/Notifications/Mentions'
 import Floating from '../Components/Trends/floating'
+import SettingsIcon from '../Assets/Icons/settings.svg'
+import Header from '../Components/Header'
 
 type TopTabParam = {
   All: undefined
@@ -16,6 +18,9 @@ const Tab = createMaterialTopTabNavigator<TopTabParam>()
 function MyTabs() {
   return (
     <View style={styles.view}>
+      <Header title="notifications" placeholder="Search for a Space" text>
+        <SettingsIcon width={24} height={24} fill={'#000'} />
+      </Header>
       <Tab.Navigator
         screenOptions={{
           tabBarLabelStyle: {fontSize: 12},
