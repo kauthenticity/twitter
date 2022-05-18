@@ -1,14 +1,9 @@
 import React from 'react'
-import {View, Text} from 'react-native'
 import {createStackNavigator} from '@react-navigation/stack'
+import {lightblue} from '../../theme'
+import Profile from '../Profile'
 
 const Stack = createStackNavigator()
-
-const Profile = () => (
-  <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-    <Text>Home screen!</Text>
-  </View>
-)
 
 export const ProfileNavigator = () => {
   return (
@@ -16,7 +11,7 @@ export const ProfileNavigator = () => {
       screenOptions={{
         headerShown: false,
       }}>
-      <Stack.Screen name="Profile" component={Profile} />
+      <Stack.Screen options={{cardStyle: {backgroundColor: lightblue}}} name="Profile" component={Profile} />
     </Stack.Navigator>
   )
 }

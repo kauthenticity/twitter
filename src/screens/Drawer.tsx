@@ -25,14 +25,14 @@ const MyDrawer = () => {
       screenOptions={{swipeEdgeWidth: 0, headerShown: false, drawerStyle: {width: '80%'}}}
       drawerContent={props => <DrawerContent {...props} />}>
       <Drawer.Screen name="BottomTab" component={BottomTab} />
-      {/* <Drawer.Screen name="Profile" component={stack.ProfileStackNavigator} />
-      <Drawer.Screen name="Lists" component={stack.ListsStackNavigator} />
-      <Drawer.Screen name="Topics" component={stack.TopicsStackNavigator} />
-      <Drawer.Screen name="Bookmarks" component={stack.BookmarksStackNavigator} />
-      <Drawer.Screen name="Moments" component={stack.MomentsStackNavigator} />
-      <Drawer.Screen name="Purchases" component={stack.PurchasesStackNavigator} />
-      <Drawer.Screen name="Monetizations" component={stack.MonetizationStackNavigator} />
-      <Drawer.Screen name="Professionals" component={stack.ProfessionalsStackNavigator} />
+      {/* <Drawer.Screen name="Profile" component={stack.ProfileNavigator} />
+      <Drawer.Screen name="Lists" component={stack.ListsNavigator} />
+      <Drawer.Screen name="Topics" component={stack.TopicsNavigator} />
+      <Drawer.Screen name="Bookmarks" component={stack.BookmarksNavigator} />
+      <Drawer.Screen name="Moments" component={stack.MomentsNavigator} />
+      <Drawer.Screen name="Purchases" component={stack.PurchasesNavigator} />
+      <Drawer.Screen name="Monetizations" component={stack.MonetizationNavigator} />
+      <Drawer.Screen name="Professionals" component={stack.ProfessionalsNavigator} />
       <Drawer.Screen name="Settings" component={stack.SettingsStackNavigator} /> */}
     </Drawer.Navigator>
   )

@@ -5,11 +5,13 @@ import LoginId from '../LoginId'
 import LoginPw from '../LoginPw'
 import Forgot from '../Forgot'
 import Drawer from '../Drawer'
+import BottomTab from '../BottomTab'
 type StackType = {
   Index: undefined
   LoginId: undefined
   LoginPw: {id: string}
   Forgot: undefined
+  //BottomTab: undefined
   Main: undefined
 }
 
@@ -25,6 +27,7 @@ export const IndexNavigator = () => {
       <Stack.Screen name="LoginId" component={LoginId} />
       <Stack.Screen name="LoginPw" component={LoginPw} />
       <Stack.Screen name="Forgot" component={Forgot} />
+      {/* <Stack.Screen options={{gestureEnabled: false}} name="BottomTab" component={BottomTab}></Stack.Screen> */}
       <Stack.Screen options={{gestureEnabled: false}} name="Main" component={Drawer} />
     </Stack.Navigator>
   )

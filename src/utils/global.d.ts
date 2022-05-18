@@ -15,5 +15,6 @@ declare namespace ReactNavigation {
     PurchasesNavigator: undefined
     SettingsNavigator: undefined
     TopicsNavigator: undefined
+    BottomTab: undefined
   }
 }

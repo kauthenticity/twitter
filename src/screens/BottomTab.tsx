@@ -18,12 +18,15 @@ import NotificationIconFilled from '../Assets/Icons/notification_filled.svg'
 import MessageIconOutline from '../Assets/Icons/message_outline.svg'
 import MessageIconFilled from '../Assets/Icons/message_filled.svg'
 
+import Drawer from './Drawer'
+
 type BottomTabParam = {
   HomeNavigator: undefined
   TrendNavigator: undefined
   SpaceNavigator: undefined
   NotificationNavigator: undefined
   MessageNavigator: undefined
+  Drawer: undefined
 }
 
 const Tab = createBottomTabNavigator<BottomTabParam>()
@@ -31,6 +34,7 @@ const Tab = createBottomTabNavigator<BottomTabParam>()
 export default function BottomTab() {
   return (
     <Tab.Navigator
+      initialRouteName="HomeNavigator"
       screenOptions={{
         tabBarShowLabel: false,
         tabBarActiveTintColor: '#000',
