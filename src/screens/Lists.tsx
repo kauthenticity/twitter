@@ -20,7 +20,6 @@ const lists = [
   {
     title: 'Pinned Lists',
     data: pinnedLists,
-    ListEmptyComponent: Empty(),
   },
   {
     title: 'Discover new Lists',
@@ -29,7 +28,6 @@ const lists = [
   {
     title: 'Your Lists',
     data: myLists,
-    ListEmptyComponent: Empty(),
   },
 ]
 
@@ -40,6 +38,9 @@ const ListItem = ({item}: {item: ListItemType}) => {
     </View>
   )
 }
+
+const emptyPinnedLists = 'Nothing to see here yet —— pin your favorite Lists to access them quickly.'
+const emptyMyLists = "You haven't created or followed any Lists. When you do, they'll show up here."
 
 const Lists = () => {
   return (
@@ -58,6 +59,19 @@ const Lists = () => {
           renderSectionHeader={({section}) => {
             return <Text style={[styles.title]}>{section.title}</Text>
           }}
+          renderSectionFooter={({section}) =>
+            section.data.length != 0 ? (
+              <View></View>
+            ) : section.title == 'Pinned Lists' ? (
+              <View>
+                <Text>{emptyPinnedLists}</Text>
+              </View>
+            ) : (
+              <View>
+                <Text>{emptyMyLists}</Text>
+              </View>
+            )
+          }
         />
       </View>
     </SafeAreaView>
