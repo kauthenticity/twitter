@@ -2,7 +2,7 @@ import React from 'react'
 import {View, Text, SafeAreaView, TouchableOpacity, ScrollView, SectionList, StyleSheet} from 'react-native'
 import StackHeader from '../Components/StackHeader'
 import MoreIcon from '../Assets/Icons/more.svg'
-import {white} from '../theme'
+import {white, darkgray, mediumgray} from '../theme'
 import {pinnedLists, newLists, myLists} from '../data/Lists'
 import type {ListItemType} from '../data/Lists'
 
@@ -63,12 +63,12 @@ const Lists = () => {
             section.data.length != 0 ? (
               <View></View>
             ) : section.title == 'Pinned Lists' ? (
-              <View>
-                <Text>{emptyPinnedLists}</Text>
+              <View style={styles.emptyView}>
+                <Text style={styles.emptyText}>{emptyPinnedLists}</Text>
               </View>
             ) : (
-              <View>
-                <Text>{emptyMyLists}</Text>
+              <View style={styles.emptyView}>
+                <Text style={styles.emptyText}>{emptyMyLists}</Text>
               </View>
             )
           }
@@ -87,5 +87,12 @@ const styles = StyleSheet.create({
   title: {
     fontWeight: '800',
     fontSize: 18,
+    paddingVertical: 10,
+  },
+  emptyView: {
+    padding: 20,
+  },
+  emptyText: {
+    color: darkgray,
   },
 })
