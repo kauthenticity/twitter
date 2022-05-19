@@ -7,6 +7,7 @@ export type ListItemType = {
   listDescription: string
   listOwnerId: string
   listOwnerName: string
+  followed: boolean
 }
 
 export const pinnedLists: ListItemType[] = []
@@ -19,6 +20,7 @@ export const newLists: ListItemType[] = [
     listDescription: 'news, politics, reporters, and experts in analysis of the Korean region',
     listOwnerId: 'ladyquixotic',
     listOwnerName: 'Madhura Prasad',
+    followed: true,
   },
   {
     listImageUri: randomImage(),
@@ -27,6 +29,7 @@ export const newLists: ListItemType[] = [
     listDescription: '',
     listOwnerId: 'cloudgoogie',
     listOwnerName: 'jeosapir (slow)',
+    followed: false,
   },
   {
     listImageUri: randomImage(),
@@ -35,6 +38,7 @@ export const newLists: ListItemType[] = [
     listDescription: 'meow meow..',
     listOwnerId: 'noveliabtn',
     listOwnerName: 'n.',
+    followed: false,
   },
 ]
 
