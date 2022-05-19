@@ -1,22 +1,22 @@
 import React from 'react'
-import {View, Text} from 'react-native'
-import {createStackNavigator} from '@react-navigation/stack'
+import {View, Text, StyleSheet} from 'react-native'
+import {SafeAreaView} from 'react-native-safe-area-context'
+import {createStackNavigator, StackHeaderProps} from '@react-navigation/stack'
+import StackHeader from '../../Components/StackHeader'
+import Lists from '../Lists'
 
 const Stack = createStackNavigator()
 
 const Profile = () => (
-  <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+  <SafeAreaView style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
     <Text>List screen!</Text>
-  </View>
+  </SafeAreaView>
 )
 
 export const ListsNavigator = () => {
   return (
-    <Stack.Navigator
-      screenOptions={{
-        headerShown: false,
-      }}>
-      <Stack.Screen name="Profile" component={Profile} />
+    <Stack.Navigator screenOptions={{headerShown: false}}>
+      <Stack.Screen name="Lists" component={Lists} />
     </Stack.Navigator>
   )
 }

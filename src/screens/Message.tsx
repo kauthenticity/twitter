@@ -1,5 +1,5 @@
 import React, {useCallback} from 'react'
-import {StyleSheet, View, Text, FlatList, Alert} from 'react-native'
+import {StyleSheet, View, Text, FlatList, Alert, SafeAreaView} from 'react-native'
 import ChatListItem from '../Components/Messages/ChatListItem'
 import Chats from '../data/Chat'
 import Floating from '../Components/Utils/Floating'
@@ -17,17 +17,19 @@ export default function Message() {
   const newMessagePress = useCallback(() => navigation.navigate('ProfileNavigator'), [])
 
   return (
-    <View style={[styles.view]}>
-      <Header title="Message" placeholder="Search Direct Messages">
-        <SettingsIcon width={24} height={24} fill={'#000'} />
-      </Header>
-      <FlatList
-        data={Chats}
-        renderItem={({item}) => <ChatListItem chat={item}></ChatListItem>}
-        keyExtractor={(item, index) => item.friendId + index}></FlatList>
+    <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
+      <View style={[styles.view]}>
+        <Header title="Message" placeholder="Search Direct Messages">
+          <SettingsIcon width={24} height={24} fill={'#000'} />
+        </Header>
+        <FlatList
+          data={Chats}
+          renderItem={({item}) => <ChatListItem chat={item}></ChatListItem>}
+          keyExtractor={(item, index) => item.friendId + index}></FlatList>
 
-      <Floating Icon={MessageIcon} onPress={newMessagePress} />
-    </View>
+        <Floating Icon={MessageIcon} onPress={newMessagePress} />
+      </View>
+    </SafeAreaView>
   )
 }
 const styles = StyleSheet.create({

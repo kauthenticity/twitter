@@ -1,6 +1,6 @@
 import React from 'react'
 import {createStackNavigator} from '@react-navigation/stack'
-import {lightblue} from '../../theme'
+import {lightblue, white} from '../../theme'
 import Profile from '../Profile'
 
 const Stack = createStackNavigator()

@@ -1,5 +1,5 @@
 import React from 'react'
-import {StyleSheet, View, Text, ImageBackground, ScrollView} from 'react-native'
+import {StyleSheet, View, Text, ImageBackground, ScrollView, SafeAreaView} from 'react-native'
 import styled from 'styled-components/native'
 import TrendsForYou from '../Components/Trends/TrendsForYou'
 import WhatsHappening from '../Components/Trends/WhatsHappening'
@@ -10,27 +10,29 @@ import SettingsIcon from '../Assets/Icons/settings.svg'
 
 export default function Happening() {
   return (
-    <View style={[styles.container]}>
-      <Header title="Trend" placeholder="Search Twitter">
-        <SettingsIcon width={24} height={24} fill={'#000'} />
-      </Header>
-      <ScrollView>
-        <ImageBackground source={require('../Assets/Images/trend.jpeg')} resizeMode="cover" style={styles.bgImg}>
-          <View style={[styles.topTextContainer]}>
-            <TopNormalContainer>
-              <TopNormal>War in Ukraine</TopNormal>
-              <Dot>·</Dot>
-              <Live>LIVE</Live>
-            </TopNormalContainer>
-            <TopBold>Evacuation efforts continue in Mariupol as Ukraine accuses Russia of violating ceasefire</TopBold>
-          </View>
-        </ImageBackground>
-        <TrendsForYou />
-        <WhatsHappening />
-        <WhoToFollow />
-      </ScrollView>
-      <Floating />
-    </View>
+    <SafeAreaView style={{backgroundColor: 'white', flex: 1}}>
+      <View style={[styles.container]}>
+        <Header title="Trend" placeholder="Search Twitter">
+          <SettingsIcon width={24} height={24} fill={'#000'} />
+        </Header>
+        <ScrollView>
+          <ImageBackground source={require('../Assets/Images/trend.jpeg')} resizeMode="cover" style={styles.bgImg}>
+            <View style={[styles.topTextContainer]}>
+              <TopNormalContainer>
+                <TopNormal>War in Ukraine</TopNormal>
+                <Dot>·</Dot>
+                <Live>LIVE</Live>
+              </TopNormalContainer>
+              <TopBold>Evacuation efforts continue in Mariupol as Ukraine accuses Russia of violating ceasefire</TopBold>
+            </View>
+          </ImageBackground>
+          <TrendsForYou />
+          <WhatsHappening />
+          <WhoToFollow />
+        </ScrollView>
+        <Floating />
+      </View>
+    </SafeAreaView>
   )
 }
 

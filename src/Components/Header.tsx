@@ -39,8 +39,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    height: 90,
-    paddingTop: Platform.OS == 'ios' ? 40 : 0, // only for IOS to give StatusBar Space
+    height: 40,
     paddingHorizontal: 15,
   },
   textInput: {
@@ -65,7 +64,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: '800',
     textAlign: 'center',
   },
 })
