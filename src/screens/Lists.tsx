@@ -2,7 +2,7 @@ import React from 'react'
 import {View, Text, SafeAreaView, TouchableOpacity, ScrollView, SectionList, StyleSheet} from 'react-native'
 import StackHeader from '../Components/StackHeader'
 import MoreIcon from '../Assets/Icons/more.svg'
-import {white, darkgray, mediumgray} from '../theme'
+import {white, darkgray, mediumgray, lightgray} from '../theme'
 import {pinnedLists, newLists, myLists} from '../data/Lists'
 import type {ListItemType} from '../data/Lists'
 
@@ -39,6 +39,10 @@ const ListItem = ({item}: {item: ListItemType}) => {
   )
 }
 
+const separator = () => {
+  return <View style={{width: '100%', borderBottomColor: lightgray, borderBottomWidth: 1}}></View>
+}
+
 const emptyPinnedLists = 'Nothing to see here yet —— pin your favorite Lists to access them quickly.'
 const emptyMyLists = "You haven't created or followed any Lists. When you do, they'll show up here."
 
@@ -53,6 +57,7 @@ const Lists = () => {
         </StackHeader>
         <SectionList
           sections={lists}
+          SectionSeparatorComponent={separator}
           keyExtractor={(item, index) => item + index.toString()}
           renderItem={({item}) => <ListItem item={item} />}
           ListEmptyComponent={Empty}
