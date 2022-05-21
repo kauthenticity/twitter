@@ -3,9 +3,10 @@ import {View, Text, TouchableOpacity, RefreshControl, Pressable, ScrollView, Sty
 import styled from 'styled-components/native'
 import {darkgray, white, mediumgray, lightblue, lightgray} from '../../../theme'
 import SpeechBubbleIcon from '../../../Assets/Icons/speechBubbleFilled.svg'
-import {storeObject, getObject, getString} from '../../../utils/asyncStorage'
+import {storeTopics, getTopics} from '../../../utils/asyncStorage'
 import SuggestedTopics from '../../../data/SuggestedTopics'
 import SuggestedTopicsComponent from '../../../Components/Topics/SuggestedTopics'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 const ICON_SIZE = 16
 
@@ -23,7 +24,7 @@ const FollowedTopicItem = ({name, followedTopics, setFollowedTopics}: FollowedTo
 
   const onPressFollow = useCallback(() => {
     const filtered = followedTopics.filter(topic => topic != name)
-    storeObject('topics', filtered)
+    storeTopics(filtered)
     setFollowing(following => !following)
   }, [])
 
@@ -53,11 +54,14 @@ const Followed = () => {
   const [followedTopics, setFollowedTopics] = useState<string[]>([])
   const [suggestedTopics, setSuggestedTopics] = useState<string[]>(SuggestedTopics)
   const [refreshing, setRefreshing] = React.useState(false)
+  const [showFollowedTopics, setShowFollowedTopics] = useState(false)
 
   const addTopic = useCallback(
     (name: string) => {
       console.log(followedTopics, name)
-      storeObject('topics', {follow: [...followedTopics, name]}).then(() => {
+      const saved = {follow: [...followedTopics, name]}
+      console.log(saved)
+      storeTopics(saved).then(() => {
         setFollowedTopics(followedTopics => [...followedTopics, name])
         setSuggestedTopics(suggestedTopics.filter(topic => topic != name))
       })
@@ -74,21 +78,21 @@ const Followed = () => {
 
   const onRefresh = useCallback(() => {
     setRefreshing(true)
-    getObject('topics').then(res => {
-      console.log('after refreshing : ', res)
-
-      setFollowedTopics(res?.follow)
+    getTopics().then(res => {
+      setFollowedTopics(res.follow)
+      setShowFollowedTopics(res.follow.length > 0 ? true : false)
       setRefreshing(false)
     })
   }, [followedTopics])
 
   useEffect(() => {
-    getObject('topics').then(res => {
-      console.log('topics from async storage : ', res)
-      setFollowedTopics(res?.follow)
+    getTopics().then(res => {
+      setFollowedTopics(res.follow)
+      setShowFollowedTopics(res.follow.length > 0 ? true : false)
     })
   }, [])
 
+  //AsyncStorage.clear()
   return (
     <ScrollView contentContainerStyle={styles.container} refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
       <View style={[styles.SectionContainer]}>
@@ -96,7 +100,7 @@ const Followed = () => {
           The topics you followed are used to personalized the Tweets, events, and ads that you see, and show up publicly on your profile.
         </Text>
       </View>
-      {followedTopics.length > 0 && (
+      {showFollowedTopics && (
         <View style={[styles.SectionContainer]}>
           {followedTopics.map(topic => (
             <FollowedTopicItem key={topic} name={topic} followedTopics={followedTopics} setFollowedTopics={setFollowedTopics}></FollowedTopicItem>

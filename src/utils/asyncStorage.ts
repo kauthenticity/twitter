@@ -1,47 +1,21 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
-export const storeString = async (key: string, value: string) => {
+export const storeTopics = async (value: object) => {
   try {
-    await AsyncStorage.setItem(key, value)
+    const jsonValue = JSON.stringify(value)
+    await AsyncStorage.setItem('topics', jsonValue)
   } catch (e) {
-    console.log(e)
+    // save error
   }
+  console.log('Done.')
 }
 
-export const storeObject = async (key: string, object: any) => {
+export const getTopics = async () => {
   try {
-    const jsonValue = JSON.stringify(object)
-    await AsyncStorage.setItem(key, jsonValue)
+    const jsonValue = await AsyncStorage.getItem('topics')
+    return jsonValue != null ? JSON.parse(jsonValue) : {follow: []}
   } catch (e) {
-    console.log(e)
+    // read error
   }
-}
-export const getString = async (key: string) => {
-  try {
-    const value = await AsyncStorage.getItem(key)
-    if (value !== null) {
-      return value
-      // value previously stored
-    } else {
-      return null
-    }
-  } catch (e) {
-    console.log(e)
-    // error reading value
-  }
-}
-
-export const getObject = async (key: string) => {
-  try {
-    const value = await AsyncStorage.getItem(key)
-    if (value !== null) {
-      return JSON.parse(value)
-      // value previously stored
-    } else {
-      return null
-    }
-  } catch (e) {
-    console.log(e)
-    // error reading value
-  }
+  console.log('Done.')
 }
