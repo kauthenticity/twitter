@@ -8,36 +8,37 @@ import {darkgray, lightblue, lightgray, mediumgray} from '../../theme'
 type SuggestedTopicsProps = {
   suggestedTopics: string[]
   addTopic: (name: string) => void
+  removeTopic: (name: string) => void
 }
 
 type ChipProps = {
   name: string
   addTopic: (name: string) => void
+  removeTopic: (name: string) => void
 }
 
 const ICON_SIZE = 16
 
-const Chip = ({name, addTopic}: ChipProps) => {
+const Chip = ({name, addTopic, removeTopic}: ChipProps) => {
   return (
     <View style={styles.chipContaier}>
       <Text style={[styles.topicName, styles.margin]}>{name}</Text>
       <TouchableOpacity
         style={[styles.margin]}
         onPress={() => {
-          console.log('pressed')
           addTopic(name)
         }}>
         <PlusIcon width={ICON_SIZE} height={ICON_SIZE} fill={lightblue}></PlusIcon>
       </TouchableOpacity>
       <Text style={[styles.mediumgray]}> | </Text>
-      <TouchableOpacity style={[styles.margin]}>
+      <TouchableOpacity style={[styles.margin]} onPress={() => removeTopic(name)}>
         <RemoveIcon width={ICON_SIZE} height={ICON_SIZE} fill={mediumgray}></RemoveIcon>
       </TouchableOpacity>
     </View>
   )
 }
 
-const SuggestedTopicsComponent = ({suggestedTopics, addTopic}: SuggestedTopicsProps) => {
+const SuggestedTopicsComponent = ({suggestedTopics, addTopic, removeTopic}: SuggestedTopicsProps) => {
   const [rows, setRows] = useState(suggestedTopics.length / 10 + 1)
   useEffect(() => {
     setRows(suggestedTopics.length / 10 + 1)
@@ -50,7 +51,7 @@ const SuggestedTopicsComponent = ({suggestedTopics, addTopic}: SuggestedTopicsPr
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}
         renderItem={({item, index}) => {
-          return <Chip name={item} addTopic={addTopic}></Chip>
+          return <Chip name={item} addTopic={addTopic} removeTopic={removeTopic}></Chip>
         }}></FlatList>
     </ScrollView>
   )

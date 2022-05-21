@@ -54,18 +54,38 @@ const Followed = () => {
   const [suggestedTopics, setSuggestedTopics] = useState<string[]>(SuggestedTopics)
   const [refreshing, setRefreshing] = React.useState(false)
 
-  const addTopic = useCallback((name: string) => {
-    setFollowedTopics(followedTopics => [...followedTopics, name])
-    setSuggestedTopics(suggestedTopics.filter(topic => topic != name))
-    console.log(followedTopics)
-  }, [])
+  const addTopic = useCallback(
+    (name: string) => {
+      console.log(followedTopics, name)
+      storeObject('topics', {follow: [...followedTopics, name]}).then(() => {
+        setFollowedTopics(followedTopics => [...followedTopics, name])
+        setSuggestedTopics(suggestedTopics.filter(topic => topic != name))
+      })
+    },
+    [followedTopics],
+  )
 
-  const onRefresh = React.useCallback(() => {
+  const removeTopic = useCallback(
+    (name: string) => {
+      setSuggestedTopics(suggestedTopics.filter(topic => topic != name))
+    },
+    [suggestedTopics],
+  )
+
+  const onRefresh = useCallback(() => {
     setRefreshing(true)
     getObject('topics').then(res => {
-      const {followed} = res
-      setFollowedTopics(followed)
+      console.log('after refreshing : ', res)
+
+      setFollowedTopics(res?.follow)
       setRefreshing(false)
+    })
+  }, [followedTopics])
+
+  useEffect(() => {
+    getObject('topics').then(res => {
+      console.log('topics from async storage : ', res)
+      setFollowedTopics(res?.follow)
     })
   }, [])
 
@@ -86,7 +106,7 @@ const Followed = () => {
       <View style={styles.SectionContainer}>
         <Text style={styles.title}>Suggested Topics</Text>
         <Text style={[styles.gray]}>You'll see top Tweets abou these right in your Home timline.</Text>
-        <SuggestedTopicsComponent suggestedTopics={suggestedTopics} addTopic={addTopic}></SuggestedTopicsComponent>
+        <SuggestedTopicsComponent suggestedTopics={suggestedTopics} addTopic={addTopic} removeTopic={removeTopic}></SuggestedTopicsComponent>
       </View>
     </ScrollView>
   )
@@ -126,7 +146,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   container: {
-    flex: 1,
+    //flex: 1,
     backgroundColor: 'white',
   },
   SectionContainer: {

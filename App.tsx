@@ -14,7 +14,7 @@ const App = () => {
     <SafeAreaProvider>
       <ReduxProvider store={store}>
         <NavigationContainer>
-          <IndexNavigator />
+          <Drawer />
         </NavigationContainer>
       </ReduxProvider>
     </SafeAreaProvider>
