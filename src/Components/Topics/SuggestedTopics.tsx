@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import {useEffect} from 'react'
 import {View, Text, ScrollView, FlatList, StyleSheet, TouchableOpacity, Touchable} from 'react-native'
 import PlusIcon from '../../Assets/Icons/plus (1).svg'
 import RemoveIcon from '../../Assets/Icons/remove.svg'
@@ -6,19 +7,26 @@ import {darkgray, lightblue, lightgray, mediumgray} from '../../theme'
 
 type SuggestedTopicsProps = {
   suggestedTopics: string[]
+  addTopic: (name: string) => void
 }
 
 type ChipProps = {
   name: string
+  addTopic: (name: string) => void
 }
 
 const ICON_SIZE = 16
 
-const Chip = ({name}: ChipProps) => {
+const Chip = ({name, addTopic}: ChipProps) => {
   return (
     <View style={styles.chipContaier}>
       <Text style={[styles.topicName, styles.margin]}>{name}</Text>
-      <TouchableOpacity style={[styles.margin]}>
+      <TouchableOpacity
+        style={[styles.margin]}
+        onPress={() => {
+          console.log('pressed')
+          addTopic(name)
+        }}>
         <PlusIcon width={ICON_SIZE} height={ICON_SIZE} fill={lightblue}></PlusIcon>
       </TouchableOpacity>
       <Text style={[styles.mediumgray]}> | </Text>
@@ -29,9 +37,11 @@ const Chip = ({name}: ChipProps) => {
   )
 }
 
-const SuggestedTopicsComponent = ({suggestedTopics}: SuggestedTopicsProps) => {
+const SuggestedTopicsComponent = ({suggestedTopics, addTopic}: SuggestedTopicsProps) => {
   const [rows, setRows] = useState(suggestedTopics.length / 10 + 1)
-  const [cols, setCols] = useState(suggestedTopics.length < 10 ? suggestedTopics.length : 10)
+  useEffect(() => {
+    setRows(suggestedTopics.length / 10 + 1)
+  }, [suggestedTopics.length])
   return (
     <ScrollView contentContainerStyle={[styles.container]} horizontal>
       <FlatList
@@ -40,7 +50,7 @@ const SuggestedTopicsComponent = ({suggestedTopics}: SuggestedTopicsProps) => {
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}
         renderItem={({item, index}) => {
-          return <Chip name={item}></Chip>
+          return <Chip name={item} addTopic={addTopic}></Chip>
         }}></FlatList>
     </ScrollView>
   )

@@ -11,8 +11,8 @@ const ICON_SIZE = 16
 
 type FollowedTopicItemProps = {
   name: string
-  followedTopics: never[]
-  setFollowedTopics: React.Dispatch<React.SetStateAction<never[]>>
+  followedTopics: string[]
+  setFollowedTopics: React.Dispatch<React.SetStateAction<string[]>>
 }
 
 const FollowedTopicItem = ({name, followedTopics, setFollowedTopics}: FollowedTopicItemProps) => {
@@ -23,9 +23,7 @@ const FollowedTopicItem = ({name, followedTopics, setFollowedTopics}: FollowedTo
 
   const onPressFollow = useCallback(() => {
     const filtered = followedTopics.filter(topic => topic != name)
-
     storeObject('topics', filtered)
-    console.log(following)
     setFollowing(following => !following)
   }, [])
 
@@ -52,9 +50,15 @@ const FollowedTopicItem = ({name, followedTopics, setFollowedTopics}: FollowedTo
 }
 
 const Followed = () => {
-  const [followedTopics, setFollowedTopics] = useState([])
-  const [suggestedTopics, setSuggestedTopics] = useState(SuggestedTopics)
+  const [followedTopics, setFollowedTopics] = useState<string[]>([])
+  const [suggestedTopics, setSuggestedTopics] = useState<string[]>(SuggestedTopics)
   const [refreshing, setRefreshing] = React.useState(false)
+
+  const addTopic = useCallback((name: string) => {
+    setFollowedTopics(followedTopics => [...followedTopics, name])
+    setSuggestedTopics(suggestedTopics.filter(topic => topic != name))
+    console.log(followedTopics)
+  }, [])
 
   const onRefresh = React.useCallback(() => {
     setRefreshing(true)
@@ -75,14 +79,14 @@ const Followed = () => {
       {followedTopics.length > 0 && (
         <View style={[styles.SectionContainer]}>
           {followedTopics.map(topic => (
-            <FollowedTopicItem name={topic} followedTopics={followedTopics} setFollowedTopics={setFollowedTopics}></FollowedTopicItem>
+            <FollowedTopicItem key={topic} name={topic} followedTopics={followedTopics} setFollowedTopics={setFollowedTopics}></FollowedTopicItem>
           ))}
         </View>
       )}
       <View style={styles.SectionContainer}>
         <Text style={styles.title}>Suggested Topics</Text>
         <Text style={[styles.gray]}>You'll see top Tweets abou these right in your Home timline.</Text>
-        <SuggestedTopicsComponent suggestedTopics={suggestedTopics}></SuggestedTopicsComponent>
+        <SuggestedTopicsComponent suggestedTopics={suggestedTopics} addTopic={addTopic}></SuggestedTopicsComponent>
       </View>
     </ScrollView>
   )
@@ -93,8 +97,7 @@ const styles = StyleSheet.create({
   title: {
     fontWeight: '800',
     fontSize: 18,
-    paddingTop: 10,
-    paddingBottom: 20,
+    paddingVertical: 10,
   },
   follow: {
     paddingVertical: 6,
