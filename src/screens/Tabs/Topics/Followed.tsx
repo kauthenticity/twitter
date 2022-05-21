@@ -24,8 +24,9 @@ const FollowedTopicItem = ({name, followedTopics, setFollowedTopics}: FollowedTo
 
   const onPressFollow = useCallback(() => {
     const filtered = followedTopics.filter(topic => topic != name)
-    storeTopics(filtered)
-    setFollowing(following => !following)
+    storeTopics({follow: filtered}).then(() => {
+      setFollowing(following => !following)
+    })
   }, [])
 
   useEffect(() => {
@@ -87,11 +88,11 @@ const Followed = () => {
 
   useEffect(() => {
     getTopics().then(res => {
+      console.log(res)
       setFollowedTopics(res.follow)
       setShowFollowedTopics(res.follow.length > 0 ? true : false)
     })
   }, [])
-
   //AsyncStorage.clear()
   return (
     <ScrollView contentContainerStyle={styles.container} refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
