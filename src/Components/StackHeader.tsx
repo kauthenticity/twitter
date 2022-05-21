@@ -9,7 +9,7 @@ import {useNavigation} from '@react-navigation/native'
 
 const ICON_SIZE = 24
 
-type StackHeaderType = {children: React.ReactNode | React.ReactNode[]; title: string}
+type StackHeaderType = {children?: React.ReactNode | React.ReactNode[]; title: string}
 
 const StackHeader = ({children, title}: StackHeaderType) => {
   const navigation = useNavigation()

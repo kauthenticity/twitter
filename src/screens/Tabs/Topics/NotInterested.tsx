@@ -1,13 +1,13 @@
 import React from 'react'
 import {View, Text, StyleSheet} from 'react-native'
 
-const CopyMe = () => {
+const NotInterested = () => {
   return (
     <View>
-      <Text>CopyMe</Text>
+      <Text>NotInterested</Text>
     </View>
   )
 }
-export default CopyMe
+export default NotInterested
 
 const styles = StyleSheet.create({})
