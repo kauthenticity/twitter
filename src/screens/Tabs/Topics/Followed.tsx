@@ -1,18 +1,40 @@
-import React, {useCallback} from 'react'
-import {View, Text, TouchableOpacity, Pressable, StyleSheet, Alert} from 'react-native'
+import React, {useCallback, useEffect, useState} from 'react'
+import {View, Text, TouchableOpacity, RefreshControl, Pressable, ScrollView, StyleSheet, Alert} from 'react-native'
 import styled from 'styled-components/native'
 import {darkgray, white, mediumgray, lightblue, lightgray} from '../../../theme'
 import SpeechBubbleIcon from '../../../Assets/Icons/speechBubbleFilled.svg'
 import {storeObject, getObject, getString} from '../../../utils/asyncStorage'
+import SuggestedTopics from '../../../data/SuggestedTopics'
+import SuggestedTopicsComponent from '../../../Components/Topics/SuggestedTopics'
 
 const ICON_SIZE = 16
 
 type FollowedTopicItemProps = {
   name: string
-  descriptor: string
+  followedTopics: never[]
+  setFollowedTopics: React.Dispatch<React.SetStateAction<never[]>>
 }
 
-const FollowedTopicItem = ({name, descriptor}: FollowedTopicItemProps) => {
+const FollowedTopicItem = ({name, followedTopics, setFollowedTopics}: FollowedTopicItemProps) => {
+  const [following, setFollowing] = useState(true)
+  const [text, setText] = useState('Following')
+  const [backgroundColor, setBackgroundColor] = useState('#fff')
+  const [color, setColor] = useState('#000')
+
+  const onPressFollow = useCallback(() => {
+    const filtered = followedTopics.filter(topic => topic != name)
+
+    storeObject('topics', filtered)
+    console.log(following)
+    setFollowing(following => !following)
+  }, [])
+
+  useEffect(() => {
+    setText(following ? 'Following' : 'Follow')
+    setBackgroundColor(following ? '#fff' : '#000')
+    setColor(following ? '#000' : '#fff')
+  }, [following])
+
   return (
     <View style={[styles.row, {marginVertical: 15}]}>
       <View style={styles.SpeechBubbleIconContainer}>
@@ -20,37 +42,60 @@ const FollowedTopicItem = ({name, descriptor}: FollowedTopicItemProps) => {
       </View>
       <View style={[styles.infoContainer]}>
         <Text style={[styles.bold]}>{name}</Text>
-        <Text style={[styles.gray]}>{descriptor}</Text>
+        <Text style={[styles.gray]}>All about {name}</Text>
       </View>
-      <Pressable style={[styles.follow]} onPress={() => Alert.alert('wow')}>
-        <Text style={[styles.bold, {textAlign: 'center'}]}>Following</Text>
-      </Pressable>
+      <TouchableOpacity style={[styles.follow, {backgroundColor: backgroundColor}]} onPress={onPressFollow}>
+        <Text style={[styles.bold, {textAlign: 'center', color: color}]}>{text}</Text>
+      </TouchableOpacity>
     </View>
   )
 }
 
 const Followed = () => {
-  storeObject('topics', {followed: 'Art & Culture'})
-  const followed = getObject('topics')
+  const [followedTopics, setFollowedTopics] = useState([])
+  const [suggestedTopics, setSuggestedTopics] = useState(SuggestedTopics)
+  const [refreshing, setRefreshing] = React.useState(false)
+
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true)
+    getObject('topics').then(res => {
+      const {followed} = res
+      setFollowedTopics(followed)
+      setRefreshing(false)
+    })
+  }, [])
 
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container} refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
       <View style={[styles.SectionContainer]}>
         <Text style={styles.descriptor}>
           The topics you followed are used to personalized the Tweets, events, and ads that you see, and show up publicly on your profile.
         </Text>
       </View>
-      <View style={[styles.SectionContainer]}>
-        <FollowedTopicItem name="Arts & Culture" descriptor="All about arts & culture" />
-        <FollowedTopicItem name="Fashion & Beauty" descriptor="All about fashion & beauty" />
-        <FollowedTopicItem name="Outdoors" descriptor="All about outdoor activities" />
+      {followedTopics.length > 0 && (
+        <View style={[styles.SectionContainer]}>
+          {followedTopics.map(topic => (
+            <FollowedTopicItem name={topic} followedTopics={followedTopics} setFollowedTopics={setFollowedTopics}></FollowedTopicItem>
+          ))}
+        </View>
+      )}
+      <View style={styles.SectionContainer}>
+        <Text style={styles.title}>Suggested Topics</Text>
+        <Text style={[styles.gray]}>You'll see top Tweets abou these right in your Home timline.</Text>
+        <SuggestedTopicsComponent suggestedTopics={suggestedTopics}></SuggestedTopicsComponent>
       </View>
-    </View>
+    </ScrollView>
   )
 }
 export default Followed
 
 const styles = StyleSheet.create({
+  title: {
+    fontWeight: '800',
+    fontSize: 18,
+    paddingTop: 10,
+    paddingBottom: 20,
+  },
   follow: {
     paddingVertical: 6,
     borderColor: mediumgray,

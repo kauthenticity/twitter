@@ -35,7 +35,7 @@ export const getObject = async (key: string) => {
   try {
     const value = await AsyncStorage.getItem(key)
     if (value !== null) {
-      return JSON.stringify(value)
+      return JSON.parse(value)
       // value previously stored
     } else {
       return null
