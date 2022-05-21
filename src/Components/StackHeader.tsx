@@ -9,7 +9,7 @@ import {useNavigation} from '@react-navigation/native'
 
 const ICON_SIZE = 24
 
-type StackHeaderType = {children: React.ReactNode; title: string}
+type StackHeaderType = {children: React.ReactNode | React.ReactNode[]; title: string}
 
 const StackHeader = ({children, title}: StackHeaderType) => {
   const navigation = useNavigation()
@@ -34,6 +34,7 @@ const Header = styled.View`
   align-items: center;
   padding-horizontal: 15px;
   height: 40px;
+  z-index: 1;
 `
 
 const Title = styled.Text`

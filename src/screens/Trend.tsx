@@ -37,7 +37,9 @@ export default function Happening() {
 }
 
 const styles = StyleSheet.create({
-  container: {},
+  container: {
+    flex: 1,
+  },
   bgImg: {
     width: '100%',
     height: 200,
