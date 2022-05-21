@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect, useState} from 'react'
-import {View, Text, TouchableOpacity, RefreshControl, Pressable, ScrollView, StyleSheet, Alert} from 'react-native'
+import {View, Text, TouchableOpacity, RefreshControl, Pressable, ScrollView, StyleSheet, Alert, Dimensions} from 'react-native'
 import styled from 'styled-components/native'
 import {darkgray, white, mediumgray, lightblue, lightgray} from '../../../theme'
 import SpeechBubbleIcon from '../../../Assets/Icons/speechBubbleFilled.svg'
@@ -151,7 +151,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   container: {
-    //flex: 1,
     backgroundColor: 'white',
   },
   SectionContainer: {

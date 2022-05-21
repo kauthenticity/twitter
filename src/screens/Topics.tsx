@@ -22,6 +22,7 @@ const Topics = () => {
         </StackHeader>
       </View>
       <Tab.Navigator
+        sceneContainerStyle={{backgroundColor: '#fff'}}
         screenOptions={{
           tabBarLabelStyle: {fontSize: 12},
           tabBarIndicatorStyle: {
