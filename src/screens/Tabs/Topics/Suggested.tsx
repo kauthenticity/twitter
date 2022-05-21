@@ -1,11 +1,14 @@
 import React, {useState, useCallback, useMemo, useEffect} from 'react'
 import {View, TouchableOpacity, Text, ScrollView, RefreshControl, StyleSheet, Dimensions, Touchable} from 'react-native'
 import {lightgray, darkgray, lightblue} from '../../../theme'
+import {PopularNearMe} from '../../../Components/Topics'
 
 type CategoryComponentProps = {
   categories: string[]
   categoryNum: number
 }
+
+const CategorySuggestions = () => {}
 
 const CategoryComponent = ({categories, categoryNum}: CategoryComponentProps) => {
   const showed = categories.slice(0, categoryNum)
@@ -48,7 +51,7 @@ const Suggested = () => {
     ],
     [],
   )
-
+  const [popularNearMeTopics, setPopularNearMeTopics] = useState<string[]>(['War in Ukraine', 'World news'])
   const onPressShowMore = useCallback(() => {
     setCategoryNum(categoryNum => (categoryNum + 6 > categories.length ? categories.length : categoryNum + 6))
   }, [])
@@ -58,6 +61,9 @@ const Suggested = () => {
     setCategoryNum(6)
     setRefreshing(false)
   }, [])
+
+  const addPopularNearMe = useCallback(() => {}, [])
+
   return (
     <ScrollView contentContainerStyle={styles.container} refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
       <View style={[styles.SectionContainer]}>
@@ -68,6 +74,10 @@ const Suggested = () => {
             <Text style={[styles.bold]}>Show More</Text>
           </TouchableOpacity>
         )}
+      </View>
+      <View style={[styles.SectionContainer]}>
+        <Text style={[styles.title]}>Popular near you</Text>
+        <PopularNearMe popularNearMeTopics={popularNearMeTopics} addTopic={addPopularNearMe}></PopularNearMe>
       </View>
     </ScrollView>
   )
