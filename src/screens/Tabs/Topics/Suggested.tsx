@@ -1,6 +1,5 @@
 import React, {useState, useCallback, useMemo, useEffect} from 'react'
-import {View, Text, ScrollView, RefreshControl, StyleSheet} from 'react-native'
-import {TouchableOpacity} from 'react-native-gesture-handler'
+import {View, TouchableOpacity, Text, ScrollView, RefreshControl, StyleSheet, Dimensions, Touchable} from 'react-native'
 import {lightgray, darkgray, lightblue} from '../../../theme'
 
 type CategoryComponentProps = {
@@ -9,8 +8,21 @@ type CategoryComponentProps = {
 }
 
 const CategoryComponent = ({categories, categoryNum}: CategoryComponentProps) => {
-  return <View></View>
+  const showed = categories.slice(0, categoryNum)
+  return (
+    <View style={[styles.categoryWrapper]}>
+      {showed.map(item => (
+        <TouchableOpacity>
+          <View style={[styles.categoryContainer]}>
+            <Text style={styles.categoryText}>{item}</Text>
+          </View>
+        </TouchableOpacity>
+      ))}
+    </View>
+  )
 }
+
+const {width} = Dimensions.get('window')
 
 const Suggested = () => {
   const [refreshing, setRefreshing] = useState<boolean>(false)
@@ -43,20 +55,19 @@ const Suggested = () => {
 
   const onRefresh = useCallback(() => {
     setRefreshing(true)
-    setTimeout(() => {
-      setRefreshing(false)
-    }, 2000)
+    setCategoryNum(6)
+    setRefreshing(false)
   }, [])
   return (
     <ScrollView contentContainerStyle={styles.container} refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
       <View style={[styles.SectionContainer]}>
         <Text style={[styles.title]}>Categories</Text>
-      </View>
-      <View style={[styles.SectionContainer]}>
         <CategoryComponent categories={categories} categoryNum={categoryNum} />
-        <TouchableOpacity style={[styles.showMoreButton]} onPress={onPressShowMore}>
-          <Text style={[styles.bold]}>Show More</Text>
-        </TouchableOpacity>
+        {categoryNum != categories.length && (
+          <TouchableOpacity style={[styles.showMoreButton]} onPress={onPressShowMore}>
+            <Text style={[styles.bold]}>Show More</Text>
+          </TouchableOpacity>
+        )}
       </View>
     </ScrollView>
   )
@@ -64,6 +75,21 @@ const Suggested = () => {
 export default Suggested
 
 const styles = StyleSheet.create({
+  categoryText: {
+    fontWeight: '700',
+    fontSize: 15,
+    color: '#fff',
+  },
+  categoryWrapper: {justifyContent: 'space-between', flexDirection: 'row', flexWrap: 'wrap', marginVertical: 15},
+  categoryContainer: {
+    width: width / 2 - 20,
+    height: 80,
+    backgroundColor: lightblue,
+    marginBottom: 10,
+    borderRadius: 12,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   showMoreButton: {
     width: '100%',
     borderColor: lightgray,
