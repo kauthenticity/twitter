@@ -6,7 +6,6 @@ import SpeechBubbleIcon from '../../../Assets/Icons/speechBubbleFilled.svg'
 import {storeTopics, getTopics} from '../../../utils/asyncStorage'
 import SuggestedTopics from '../../../data/SuggestedTopics'
 import SuggestedTopicsComponent from '../../../Components/Topics/SuggestedTopics'
-import AsyncStorage from '@react-native-async-storage/async-storage'
 
 const ICON_SIZE = 16
 

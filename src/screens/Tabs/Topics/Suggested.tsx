@@ -2,6 +2,7 @@ import React, {useState, useCallback, useMemo, useEffect} from 'react'
 import {View, TouchableOpacity, Text, ScrollView, RefreshControl, StyleSheet, Dimensions, Touchable} from 'react-native'
 import {lightgray, darkgray, lightblue} from '../../../theme'
 import {PopularNearMe} from '../../../Components/Topics'
+import {storeTopics, getTopics} from '../../../utils/asyncStorage'
 
 type CategoryComponentProps = {
   categories: string[]
@@ -56,13 +57,33 @@ const Suggested = () => {
     setCategoryNum(categoryNum => (categoryNum + 6 > categories.length ? categories.length : categoryNum + 6))
   }, [])
 
+  const [followedTopics, setFollowedTopics] = useState<string[]>([])
+
   const onRefresh = useCallback(() => {
     setRefreshing(true)
     setCategoryNum(6)
     setRefreshing(false)
   }, [])
 
-  const addPopularNearMe = useCallback(() => {}, [])
+  useEffect(() => {
+    getTopics().then(res => {
+      console.log(res)
+      setFollowedTopics(res.follow)
+    })
+  }, [])
+
+  const addPopularNearMe = useCallback(
+    (name: string) => {
+      console.log(followedTopics, name)
+      const saved = {follow: [...followedTopics, name]}
+      console.log(saved)
+      storeTopics(saved).then(() => {
+        setFollowedTopics(followedTopics => [...followedTopics, name])
+        // setPopularNearMeTopics(popularNearMeTopics.filter(topic => topic != name))
+      })
+    },
+    [followedTopics],
+  )
 
   return (
     <ScrollView contentContainerStyle={styles.container} refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
