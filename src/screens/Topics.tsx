@@ -56,7 +56,7 @@ const Topics = () => {
           name="NotInterested"
           options={{
             tabBarLabel: ({focused, color}) => {
-              return <Text style={[styles.label, {color: color}]}>NotInterested</Text>
+              return <Text style={[styles.label, {color: color}]}>Not Interested</Text>
             },
           }}
           component={NotInterested}
