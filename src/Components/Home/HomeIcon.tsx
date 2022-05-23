@@ -2,7 +2,7 @@ import React, {useCallback, useState} from 'react'
 import styled from 'styled-components/native'
 import {TouchableOpacity, View, Text} from 'react-native'
 import * as D from '../../data'
-import BottomSheet from '../Utils/BottomSheet'
+import BottomSheet from './BottomSheet'
 import HomeBottomSheet from './HomeBottomSheet'
 
 import CommentIcon from '../../Assets/Icons/comment.svg'
@@ -46,9 +46,7 @@ const HomeIcon = ({counts}: HomeIconProps) => {
         <TouchableOpacity onPress={pressButton}>
           <ShareIcon width={IconSize} height={IconSize} fill={fill} />
         </TouchableOpacity>
-        <BottomSheet modalVisible={modalVisible} setModalVisible={setModalVisible}>
-          <HomeBottomSheet />
-        </BottomSheet>
+        <BottomSheet modalVisible={modalVisible} setModalVisible={setModalVisible}></BottomSheet>
       </Item>
     </Container>
   )

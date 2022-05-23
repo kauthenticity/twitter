@@ -10,7 +10,11 @@ import ImessageIcon from '../../Assets/Icons/imessage.svg'
 const ICON_SIZE = 24
 const ICON_SIZE_LARGE = 28
 
-export default function HomeBottomSheet() {
+type HomebottomSheetProps = {
+  closeModal: () => void
+}
+
+const HomeBottomSheet = ({closeModal}: HomebottomSheetProps) => {
   return (
     <View style={[styles.container]}>
       <View style={[styles.bar]}></View>
@@ -56,12 +60,14 @@ export default function HomeBottomSheet() {
         </TouchableOpacity>
       </View>
 
-      <TouchableOpacity style={styles.cancelButton}>
+      <TouchableOpacity style={styles.cancelButton} onPress={closeModal}>
         <Text style={[styles.cancelText]}>Cancel</Text>
       </TouchableOpacity>
     </View>
   )
 }
+
+export default HomeBottomSheet
 
 const styles = StyleSheet.create({
   cancelText: {
