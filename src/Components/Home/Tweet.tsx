@@ -4,6 +4,7 @@ import {TouchableOpacity, View, Image, Text, StyleSheet, useWindowDimensions} fr
 import moment from 'moment-with-locales-es6'
 import HomeIcon from './HomeIcon'
 import ViewMore from '../Icons/ViewMore'
+import BottomSheet from '../Utils/BottomSheet'
 
 import * as D from '../../data'
 
