@@ -12,11 +12,12 @@ import ShareIcon from '../../Assets/Icons/share.svg'
 
 type HomeIconProps = {
   counts: D.Counts
+  person: D.IPerson
 }
 
 const IconSize = 16
 const fill = '#3d3d3d'
-const HomeIcon = ({counts}: HomeIconProps) => {
+const HomeIcon = ({person, counts}: HomeIconProps) => {
   const [modalVisible, setModalVisible] = useState<boolean>(false)
   const pressButton = useCallback(() => {
     setModalVisible(visible => !visible)
@@ -46,7 +47,7 @@ const HomeIcon = ({counts}: HomeIconProps) => {
         <TouchableOpacity onPress={pressButton}>
           <ShareIcon width={IconSize} height={IconSize} fill={fill} />
         </TouchableOpacity>
-        <BottomSheet modalVisible={modalVisible} setModalVisible={setModalVisible}></BottomSheet>
+        <BottomSheet modalVisible={modalVisible} setModalVisible={setModalVisible} person={person}></BottomSheet>
       </Item>
     </Container>
   )

@@ -1,14 +1,16 @@
 import React, {useEffect, useRef} from 'react'
 import {View, StyleSheet, Text, Modal, Animated, TouchableWithoutFeedback, Dimensions, PanResponder} from 'react-native'
 import HomeBottomSheet from './HomeBottomSheet'
+import * as D from '../../data'
 
 type BottomSheetProps = {
+  person: D.IPerson
   modalVisible: boolean
   setModalVisible: React.Dispatch<React.SetStateAction<boolean>>
   children?: React.ReactNode
 }
 
-const BottomSheet = ({modalVisible, setModalVisible, children}: BottomSheetProps) => {
+const BottomSheet = ({person, modalVisible, setModalVisible, children}: BottomSheetProps) => {
   const screenHeight = Dimensions.get('screen').height
   const panY = useRef(new Animated.Value(screenHeight)).current
   const translateY = panY.interpolate({
@@ -64,7 +66,7 @@ const BottomSheet = ({modalVisible, setModalVisible, children}: BottomSheetProps
           <View style={styles.background} />
         </TouchableWithoutFeedback>
         <Animated.View style={{...styles.bottomSheetContainer, transform: [{translateY: translateY}]}} {...panResponders.panHandlers}>
-          <HomeBottomSheet closeModal={closeModal}></HomeBottomSheet>
+          <HomeBottomSheet closeModal={closeModal} person={person}></HomeBottomSheet>
         </Animated.View>
       </View>
     </Modal>

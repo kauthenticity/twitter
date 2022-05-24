@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useCallback, useState} from 'react'
 import {View, Text, TouchableOpacity, StyleSheet, Image, Share} from 'react-native'
 import {lightgray, darkgray} from '../../theme'
 import MessageIcon from '../../Assets/Icons/message.svg'
@@ -6,15 +6,32 @@ import BookmarkAddIcon from '../../Assets/Icons/addBookmark.svg'
 import LinkIcon from '../../Assets/Icons/link.svg'
 import ShareIcon from '../../Assets/Icons/share.svg'
 import ImessageIcon from '../../Assets/Icons/imessage.svg'
+import {storeBookmarks, getBookmarks} from '../../utils/asyncStorage'
+
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import * as D from '../../data'
 
 const ICON_SIZE = 24
 const ICON_SIZE_LARGE = 28
 
 type HomebottomSheetProps = {
   closeModal: () => void
+  person: D.IPerson
 }
 
-const HomeBottomSheet = ({closeModal}: HomebottomSheetProps) => {
+const HomeBottomSheet = ({closeModal, person}: HomebottomSheetProps) => {
+  //AsyncStorage.clear()
+  const [done, setDone] = useState(false)
+  const onPressBookmark = useCallback(() => {
+    getBookmarks().then(bookmarks => {
+      console.log('current bookmarks : ', bookmarks)
+      storeBookmarks([...bookmarks, person]).then(() => {
+        setDone(true)
+        closeModal()
+      })
+    })
+  }, [])
+
   return (
     <View style={[styles.container]}>
       <View style={[styles.bar]}></View>
@@ -26,7 +43,7 @@ const HomeBottomSheet = ({closeModal}: HomebottomSheetProps) => {
         </TouchableOpacity>
       </View>
       <View style={[styles.buttonContainer]}>
-        <TouchableOpacity style={[styles.iconWrapper]}>
+        <TouchableOpacity style={[styles.iconWrapper]} onPress={onPressBookmark}>
           <View style={[styles.iconBackground]}>
             <BookmarkAddIcon width={ICON_SIZE_LARGE} height={ICON_SIZE_LARGE} fill={darkgray} />
           </View>

@@ -1,14 +1,9 @@
 import React from 'react'
 import {View, Text} from 'react-native'
 import {createStackNavigator} from '@react-navigation/stack'
+import Bookmarks from '../Bookmarks'
 
 const Stack = createStackNavigator()
-
-const Bookmarks = () => (
-  <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-    <Text>Bookmarks screen!</Text>
-  </View>
-)
 
 export const BookmarksNavigator = () => {
   return (

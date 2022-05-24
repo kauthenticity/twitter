@@ -19,3 +19,24 @@ export const getTopics = async () => {
   }
   console.log('Done.')
 }
+
+export const storeBookmarks = async (value: object) => {
+  try {
+    const jsonValue = JSON.stringify(value)
+    await AsyncStorage.setItem('bookmarks', jsonValue)
+  } catch (e) {
+    // save error
+  }
+  console.log('Done.')
+}
+
+export const getBookmarks = async () => {
+  try {
+    const jsonValue = await AsyncStorage.getItem('bookmarks')
+    console.log(jsonValue)
+    return jsonValue != null ? JSON.parse(jsonValue) : []
+  } catch (e) {
+    // read error
+  }
+  console.log('Done.')
+}

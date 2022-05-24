@@ -59,7 +59,7 @@ const Tweet = ({person}: TweetProps) => {
           </Description>
           <Image style={[styles.imgStyle]} source={{uri: person.image}} />
         </ContentContainer>
-        <HomeIcon counts={person.counts} />
+        <HomeIcon person={person} counts={person.counts} />
       </RightContainer>
     </Container>
   )
