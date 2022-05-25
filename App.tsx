@@ -1,6 +1,7 @@
-import React from 'react'
 import 'react-native-gesture-handler'
+import React from 'react'
 import {SafeAreaProvider} from 'react-native-safe-area-context'
+import {SafeAreaView} from 'react-native'
 import {NavigationContainer} from '@react-navigation/native'
 import BottomTab from './src/screens/BottomTab'
 import Drawer from './src/screens/Drawer'

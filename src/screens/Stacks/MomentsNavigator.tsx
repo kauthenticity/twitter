@@ -1,14 +1,9 @@
 import React from 'react'
 import {View, Text} from 'react-native'
 import {createStackNavigator} from '@react-navigation/stack'
+import Moments from '../Moments'
 
 const Stack = createStackNavigator()
-
-const Profile = () => (
-  <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-    <Text>Moments screen!</Text>
-  </View>
-)
 
 export const MomentsNavigator = () => {
   return (
@@ -16,7 +11,7 @@ export const MomentsNavigator = () => {
       screenOptions={{
         headerShown: false,
       }}>
-      <Stack.Screen name="Profile" component={Profile} />
+      <Stack.Screen name="Moments" component={Moments} />
     </Stack.Navigator>
   )
 }
